@@ -67,6 +67,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\TrendLeaseDatabase.mdf" />
+    <Content Include="App_Data\TrendLeaseDatabase_log.ldf">
+      <DependentUpon>TrendLeaseDatabase.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\UserSchema.sql" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -84,7 +89,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Home.aspx" />
-    <Content Include="Image\Home\home-display-1.png" />
+    <Content Include="Image\Home\model.png" />
     <Content Include="Login.aspx" />
     <Content Include="MainContent.aspx" />
     <Content Include="Register.aspx" />
@@ -99,7 +104,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\Entry.cs" />
+    <Compile Include="App\Users\User.cs" />
+    <Compile Include="App\Users\UserRepository.cs" />
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -177,9 +183,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
