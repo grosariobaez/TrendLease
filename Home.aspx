@@ -10,6 +10,10 @@
         .full-width-image {
             width: 100%;
         }
+
+        .title-header {
+            font-weight: 900;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -18,7 +22,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 centered-div text-center ">
-                    <div>Where Fashion Meets Convenience</div>
+                    <div class="title-header">WHERE FASHION MEETS CONVINIENCE</div>
 
                     <div>
                         Discover and Wear the Latest Fashion Trends
