@@ -31,6 +31,7 @@ namespace TrendLease_WebApp.App.Products
                         products.Add(new Product
                         {
                             prodName = reader.GetString(reader.GetOrdinal("prodName")),
+                            prodID = reader.GetString(reader.GetOrdinal("prodID"))
                         });
                     }
                     return products;

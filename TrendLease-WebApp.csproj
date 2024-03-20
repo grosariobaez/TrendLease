@@ -93,7 +93,13 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Home.aspx" />
     <Content Include="Image\Home\model.png" />
-    <Content Include="Image\Products\1.png" />
+    <Content Include="Image\Products\00001.png" />
+    <Content Include="Image\Products\00002.png" />
+    <Content Include="Image\Products\00003.png" />
+    <Content Include="Image\Products\00004.png" />
+    <Content Include="Image\Products\00005.png" />
+    <Content Include="Image\Products\00006.png" />
+    <Content Include="Image\Products\00007.png" />
     <Content Include="Login.aspx" />
     <Content Include="MainContent.aspx" />
     <Content Include="Register.aspx" />

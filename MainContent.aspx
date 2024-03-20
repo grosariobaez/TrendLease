@@ -80,6 +80,7 @@
 
         <asp:Repeater ID="ItemsRepeater" runat="server">
             <ItemTemplate>
+                <img style="height: 3rem;" src="Image/Products/<%# Eval("prodID") %>.png" alt="Card image cap">
                 <div>
                     <%# Eval("prodName") %>
                 </div>
