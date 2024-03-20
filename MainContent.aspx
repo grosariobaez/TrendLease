@@ -78,6 +78,15 @@
         </div>
 
 
+        <asp:Repeater ID="ItemsRepeater" runat="server">
+            <ItemTemplate>
+                <div>
+                    <%# Eval("prodName") %>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
+
+
 
         <%-- Products Main Container --%>
         <div class="row">
