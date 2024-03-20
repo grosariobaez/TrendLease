@@ -21,9 +21,10 @@ namespace TrendLease_WebApp.App.Products
             {
                 connection.Open();
 
-                command.CommandText = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, ProductRating.userRating 
+                command.CommandText = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, AVG(ProductRating.userRating) as userRating, COUNT(ProductRating.prodID) as ProductReviews
                                         FROM Products 
-                                        JOIN ProductRating ON Products.ProdID = ProductRating.ProdID";
+                                        JOIN ProductRating ON Products.ProdID = ProductRating.ProdID
+                                        GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -39,7 +40,9 @@ namespace TrendLease_WebApp.App.Products
                             prodType = reader["prodType"].ToString(),
                             prodPrice = Convert.ToSingle(reader["prodPrice"]), // Convert to float
                             prodAvail = (bool)reader["prodAvail"], // Cast to bool
-                            prodRating = Convert.ToInt32(reader["userRating"]) // Convert to int
+                            prodRating = Convert.ToSingle(reader["userRating"]), // Convert to int
+                            reviewCount = Convert.ToInt32(reader["ProductReviews"])
+
                         });
                     }
 

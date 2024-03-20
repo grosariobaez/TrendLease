@@ -16,7 +16,9 @@ namespace TrendLease_WebApp.App.Products
 
         public bool prodAvail { get; set; } 
 
-        public int prodRating { get; set; } 
+        public float prodRating { get; set; } 
+
+        public int reviewCount { get; set; }    
 
     }
 }
