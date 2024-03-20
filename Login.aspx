@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="TrendLease_WebApp.Sample" %>
+﻿<%@ Page Title="Log in to TrendLease" Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="TrendLease_WebApp.Sample" %>
 
 <!DOCTYPE html>
 

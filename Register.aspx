@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="TrendLease_WebApp.Register_1" %>
+﻿<%@ Page Title="Sign up to TrendLease" Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="TrendLease_WebApp.Register_1" %>
 
 <!DOCTYPE html>
 
@@ -28,7 +28,7 @@
                 <form id="registerForm" runat="server">
 
                     <div class="text">
-                        <p class="header">Register</p>
+                        <p class="header">Sign Up</p>
                     </div>
 
                     <div class="form-group">

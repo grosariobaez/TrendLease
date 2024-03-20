@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Nav-1.Master" AutoEventWireup="true" CodeBehind="MainContent.aspx.cs" Inherits="TrendLease_WebApp.MainContent" %>
+﻿<%@ Page Title="TrendLease" Language="C#" MasterPageFile="~/Nav-1.Master" AutoEventWireup="true" CodeBehind="MainContent.aspx.cs" Inherits="TrendLease_WebApp.MainContent" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -109,7 +109,7 @@
 
                                 <!-- Product Price -->
                                 <div class="price-container">
-                                    ₱ <%# Eval("prodPrice") %>
+                                    <%# Eval("prodPrice", "{0:C}") %>
                                 </div>
 
                                 <!-- Button Overlapping -->

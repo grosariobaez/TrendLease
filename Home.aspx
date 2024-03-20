@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavHome.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="TrendLease_WebApp.Home" %>
+﻿<%@ Page Title="Welcome to TrendLease!" Language="C#" MasterPageFile="~/NavHome.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="TrendLease_WebApp.Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
