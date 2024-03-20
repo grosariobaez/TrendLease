@@ -67,6 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ProductInsert.sql" />
+    <Content Include="App_Data\ProductsSchema.sql" />
+    <Content Include="App_Data\RatingSchema.sql" />
     <Content Include="App_Data\TrendLeaseDatabase.mdf" />
     <Content Include="App_Data\TrendLeaseDatabase_log.ldf">
       <DependentUpon>TrendLeaseDatabase.mdf</DependentUpon>

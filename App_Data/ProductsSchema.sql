@@ -1,0 +1,11 @@
+﻿DROP TABLE IF EXISTS Products;
+
+-- Products Table
+CREATE TABLE Products (
+	prodID VARCHAR(5) NOT NULL PRIMARY KEY,
+	prodName VARCHAR(50) NOT NULL,
+	prodDesc VARCHAR(255) NOT NULL,
+	prodType VARCHAR(50) NOT NULL,
+	prodPrice DECIMAL(10, 2) NOT NULL,
+	prodAvail VARCHAR (5) NOT NULL
+);
