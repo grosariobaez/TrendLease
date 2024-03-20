@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Nav-1.Master.cs" Inherits="TrendLease_WebApp.Site1" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NavHome.master.cs" Inherits="TrendLease_WebApp.NavHome" %>
 
 <!DOCTYPE html>
 
@@ -31,27 +31,22 @@
             <div class="nav--container justify-content-end">
                 <ul class="navbar-nav d-flex flex-row">
                     <li class="nav-item">
-                        <a class="nav-link me-5" href="#">Cart</a>
+                        <a class="nav-link me-5" href="Login.aspx">Log In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link me-5" href="#">Wish List</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link me-5" href="Register.aspx">Sign Up</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <%-- Main Content --%>
     <form id="form1" runat="server">
         <div>
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </form>
-
 
     <%-- Footer --%>
     <div class="footer">
@@ -64,6 +59,5 @@
             Copyright &copy; 2024
         </div>
     </div>
-
 </body>
 </html>
