@@ -6,6 +6,6 @@ CREATE TABLE Products (
 	prodName VARCHAR(50) NOT NULL,
 	prodDesc VARCHAR(255) NOT NULL,
 	prodType VARCHAR(50) NOT NULL,
-	prodPrice DECIMAL(10, 2) NOT NULL,
-	prodAvail VARCHAR (5) NOT NULL
+	prodPrice FLOAT NOT NULL,
+	prodAvail BIT NOT NULL
 );

@@ -83,6 +83,8 @@
                 <img style="height: 3rem;" src="Image/Products/<%# Eval("prodID") %>.png" alt="Card image cap">
                 <div>
                     <%# Eval("prodName") %>
+                    <%# Eval("prodPrice") %>
+                    <%# Eval("prodRating") %>
                 </div>
             </ItemTemplate>
         </asp:Repeater>

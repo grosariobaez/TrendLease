@@ -13,14 +13,17 @@ namespace TrendLease_WebApp.App.Products
     {
         public string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
-        public IEnumerable<Product> GetAllProducts() {
+        public IEnumerable<Product> GetAllProducts()
+        {
 
             using (var connection = new SqlConnection(connectionString))
             using (var command = connection.CreateCommand())
             {
                 connection.Open();
 
-                command.CommandText = $"SELECT * FROM Products";
+                command.CommandText = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, ProductRating.userRating 
+                                        FROM Products 
+                                        JOIN ProductRating ON Products.ProdID = ProductRating.ProdID";
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -30,15 +33,19 @@ namespace TrendLease_WebApp.App.Products
                     {
                         products.Add(new Product
                         {
-                            prodName = reader.GetString(reader.GetOrdinal("prodName")),
-                            prodID = reader.GetString(reader.GetOrdinal("prodID"))
+                            prodName = reader["prodName"].ToString(),
+                            prodID = reader["prodID"].ToString(),
+                            prodDesc = reader["prodDesc"].ToString(),
+                            prodType = reader["prodType"].ToString(),
+                            prodPrice = Convert.ToSingle(reader["prodPrice"]), // Convert to float
+                            prodAvail = (bool)reader["prodAvail"], // Cast to bool
+                            prodRating = Convert.ToInt32(reader["userRating"]) // Convert to int
                         });
                     }
+
                     return products;
                 }
             }
-
-
         }
     }
 }
