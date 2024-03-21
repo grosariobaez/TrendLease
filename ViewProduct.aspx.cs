@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TrendLease_WebApp.App.Carts;
 using TrendLease_WebApp.App.Products;
 using TrendLease_WebApp.App.Wishlists;
 
@@ -34,6 +35,7 @@ namespace TrendLease_WebApp
 
         }
 
+        // add item to wishlist
         protected void wishlistBtn_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
@@ -60,11 +62,27 @@ namespace TrendLease_WebApp
 
         }
 
- 
+        // add item to cart
+        protected void addToCartBtn_Click(object sender, EventArgs e)
+        {
+            string username = Request.QueryString["username"];
+            string prodID = Request.QueryString["prodID"];
 
+            
+            CartRepository repository = new CartRepository();
 
+            bool itemExistsInCart = repository.ItemExistsInCart(username, prodID);
 
-
-
+         
+            if (!itemExistsInCart)
+            {
+                repository.InsertItemCart(username, prodID);
+                Response.Write($"<script>alert('Success! Item is added to cart.');</script>");
+            }
+            else
+            {
+                Response.Write($"<script>alert('Item is already in the cart.');</script>");
+            }
+        }
     }
 }

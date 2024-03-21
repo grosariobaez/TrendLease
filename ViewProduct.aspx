@@ -126,7 +126,7 @@
 
                                 <%-- Buttons --%>
                                 <div class="btn-container row d-flex justify-content-between">
-                                    <asp:Button ID="Button1" runat="server" Text="Add To Cart" class="btnDesign col-md-5" />
+                                    <asp:Button ID="addToCartBtn" runat="server" Text="Add To Cart" class="btnDesign col-md-5" OnClick="addToCartBtn_Click" />
                                     <asp:Button ID="wishlistBtn" runat="server" Text="Add To Wishlist" class="btnDesign col-md-5" OnClick="wishlistBtn_Click" />
                                 </div>
 

@@ -3,6 +3,5 @@
 CREATE TABLE CartItems (
 	username VARCHAR (50) NOT NULL,
 	prodID VARCHAR (5) NOT NULL,
-	CartPrice FLOAT NOT NULL
-
+	CartPrice FLOAT 
 );

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Nav-1.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="TrendLease_WebApp.Cart" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -12,7 +13,13 @@
         <asp:Repeater ID="CartRepeater" runat="server">
             <ItemTemplate>
 
+                <div>
+                    <%# Eval("prodName") %>
+                </div>
 
+                <div>
+                    <%# Eval("prodPrice") %>
+                </div>
 
 
 
