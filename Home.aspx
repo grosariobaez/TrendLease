@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .image-container {
-            height: 20rem; /* Adjust this value as needed */
+            height: 20rem;
             overflow: hidden;
         }
 
