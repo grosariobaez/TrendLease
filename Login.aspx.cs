@@ -19,17 +19,15 @@ namespace TrendLease_WebApp
         {
             var userRepo = new UserRepository();
 
-            // getting user in database       
             var currUser = userRepo.LogInUser(username.Text);
 
-            // validation of existing user
             if (currUser != null && currUser.Any())
             {
                 foreach (var user in currUser)
                 {
                     if (user.Username != null)
                     {
-                        // validation of password
+
                         if (user.UserPass == password.Text)
                         {
                             currentUser onlineUser = new currentUser
@@ -38,7 +36,6 @@ namespace TrendLease_WebApp
                                 Password = user.UserPass
                             };
 
-                            // redirect page
                             Response.Redirect("MainContent.aspx?username=" + onlineUser.Username);
                         }
 

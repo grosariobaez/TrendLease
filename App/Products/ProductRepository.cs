@@ -60,7 +60,7 @@ namespace TrendLease_WebApp.App.Products
             {
                 connection.Open();
 
-                // Construct the SQL query based on the selected category
+
                 string query;
                 if (category == "All")
                 {
@@ -97,9 +97,9 @@ namespace TrendLease_WebApp.App.Products
                             prodID = reader["prodID"].ToString(),
                             prodDesc = reader["prodDesc"].ToString(),
                             prodType = reader["prodType"].ToString(),
-                            prodPrice = Convert.ToSingle(reader["prodPrice"]), // Convert to float
-                            prodAvail = (bool)reader["prodAvail"], // Cast to bool
-                            prodRating = Convert.ToSingle(reader["userRating"]), // Convert to float
+                            prodPrice = Convert.ToSingle(reader["prodPrice"]), 
+                            prodAvail = (bool)reader["prodAvail"],
+                            prodRating = Convert.ToSingle(reader["userRating"]), 
                             reviewCount = Convert.ToInt32(reader["ProductReviews"])
                         });
                     }
@@ -108,6 +108,60 @@ namespace TrendLease_WebApp.App.Products
                 }
             }
         }
+
+
+
+        // get specific item for product view
+        public IEnumerable<Product> GetSpecificProduct(string prodID)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = connection.CreateCommand())
+            {
+                connection.Open();
+
+                command.CommandText = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, 
+                      COALESCE(AVG(ProductRating.userRating), 0) as userRating, 
+                      COALESCE(COUNT(ProductRating.prodID), 0) as ProductReviews
+                      FROM Products 
+                      LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
+                      WHERE Products.prodID = @prodID
+                      GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
+
+
+
+                command.Parameters.Add("@prodID", prodID);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    var products = new List<Product>();
+
+                    while (reader.Read())
+                    {
+                        products.Add(new Product
+                        {
+                            prodName = reader["prodName"].ToString(),
+                            prodID = reader["prodID"].ToString(),
+                            prodDesc = reader["prodDesc"].ToString(),
+                            prodType = reader["prodType"].ToString(),
+                            prodPrice = Convert.ToSingle(reader["prodPrice"]),
+                            prodAvail = (bool)reader["prodAvail"],
+                            prodRating = Convert.ToSingle(reader["userRating"]),
+                            reviewCount = Convert.ToInt32(reader["ProductReviews"])
+                        });
+                    }
+
+                    return products;
+                }
+
+
+            }
+        }
+
+
+
+
+
+
 
     }
 }

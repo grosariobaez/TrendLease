@@ -28,7 +28,6 @@ namespace TrendLease_WebApp
                 {
                     Response.Write($"<script>alert('Successful Registration');</script>");
 
-                    // user creation
                     var userRepo = new UserRepository();
 
                     userRepo.CreateUser(new User()
@@ -44,23 +43,23 @@ namespace TrendLease_WebApp
                     });
 
 
-                    // clear values
+
                     ClearTxtboxValues();
 
                     Response.Write("<script>window.setTimeout(function(){ window.location.href = 'Login.aspx'; }, 1000);</script>");
-                    // Response.Redirect("Login.aspx");
+
                 }
                 else
                 {
                     Response.Write($"<script>alert('User {newUser} already exists');</script>");
 
-                    // clear values
+
                     ClearTxtboxValues();
                 }
             }
             else
             {
-                // invalid creation
+
                 Response.Write($"<script>alert('Unsuccessful Registration. Please check your inputted values.');</script>");
             }
         }
@@ -68,7 +67,7 @@ namespace TrendLease_WebApp
 
         protected void ClearTxtboxValues()
         {
-            // clear input fields
+
             fNameTxtBox.Text = "";
             lNameTxtBox.Text = "";
             addressTxtBox.Text = "";

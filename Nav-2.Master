@@ -26,20 +26,7 @@
                 <p class="logo mb-0">TREND<span>LEASE</span></p>
             </a>
             <div class="flex-grow-1"></div>
-           <%-- <!-- Navbar links -->
-            <div class="nav--container justify-content-end">
-                <ul class="navbar-nav d-flex flex-row">
-                    <li class="nav-item">
-                        <a class="nav-link me-5" href="#">Cart</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link me-5" href="#">Wish List</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Home.aspx">Logout</a>
-                    </li>
-                </ul>
-            </div>--%>
+         
         </div>
     </nav>
 

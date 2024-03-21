@@ -119,6 +119,8 @@
     <Compile Include="App\Products\ProductRepository.cs" />
     <Compile Include="App\Users\User.cs" />
     <Compile Include="App\Users\UserRepository.cs" />
+    <Compile Include="App\Wishlists\Wishlist.cs" />
+    <Compile Include="App\Wishlists\WishlistRepository.cs" />
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
