@@ -111,6 +111,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Styles\Elements.css" />
     <Content Include="Styles\Entry.css" />
+    <Content Include="ViewProduct.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +168,13 @@
     </Compile>
     <Compile Include="Nav-1.Master.designer.cs">
       <DependentUpon>Nav-1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ViewProduct.aspx.cs">
+      <DependentUpon>ViewProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewProduct.aspx.designer.cs">
+      <DependentUpon>ViewProduct.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

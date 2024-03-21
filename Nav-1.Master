@@ -54,7 +54,7 @@
 
 
     <%-- Footer --%>
-    <div class="footer mt-auto footer-container">
+    <div class="footer">
         <div>
             <a href="#" class="navbar-brand">
                 <p class="logo mb-0">TREND<span>LEASE</span></p>

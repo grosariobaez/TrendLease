@@ -57,7 +57,11 @@ namespace TrendLease_WebApp
 
         protected void SeeProdBtn_Click(object sender, EventArgs e)
         {
+            //Button button = (Button)sender;
+            //RepeaterItem item = (RepeaterItem)button.NamingContainer;
 
+            
+            Response.Redirect("ViewProduct.aspx?username=" + Session["Username"]);
         }
 
     }

@@ -39,14 +39,8 @@ nav {
 .footer {
     color: #b7d9ff;
     background-color: #2D3C4D;
-    padding: 10px; /* Adjust padding as needed */
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    padding: 5rem; /* Adjust padding as needed */
     width: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.385); /* Optional: Add shadow effect */
 }
 
-.footer-container {
-    bottom: 0;
-}
