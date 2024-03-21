@@ -60,6 +60,15 @@ namespace TrendLease_WebApp
         protected global::System.Web.UI.WebControls.RadioButton RadioButton4;
 
         /// <summary>
+        /// NoProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NoProduct;
+
+        /// <summary>
         /// ItemsRepeater control.
         /// </summary>
         /// <remarks>

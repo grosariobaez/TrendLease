@@ -14,15 +14,16 @@ namespace TrendLease_WebApp
         {
             this.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
 
-            // Retrieve username from query string
             string username = Request.QueryString["username"];
 
-            // Store username in session state
             Session["Username"] = username;
 
             BindProductRepeater();
 
+            // Manually trigger the RadioButton_CheckedChanged event for the "All" option
+            RadioButton_CheckedChanged(RadioButton6, EventArgs.Empty);
         }
+
 
         public void BindProductRepeater()
         {
@@ -31,9 +32,33 @@ namespace TrendLease_WebApp
             ItemsRepeater.DataBind();
         }
 
+        protected void RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            string category = ((RadioButton)sender).Text;
+
+            List<Product> filteredProducts;
+            if (category == "All")
+            {
+                filteredProducts = new ProductRepository().GetAllProducts().ToList();
+            }
+            else
+            {
+                filteredProducts = new ProductRepository().GetProductsByCategory(category).ToList();
+            }
+
+            ItemsRepeater.DataSource = filteredProducts;
+            ItemsRepeater.DataBind();
+
+            // Show or hide the NoProduct div based on the count of filtered products
+            NoProduct.Visible = filteredProducts.Count == 0;
+        }
 
 
+        protected void SeeProdBtn_Click(object sender, EventArgs e)
+        {
 
+        }
 
     }
 }
