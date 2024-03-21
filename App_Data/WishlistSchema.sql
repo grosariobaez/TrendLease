@@ -1,6 +1,6 @@
-﻿DROP TABLE IF EXISTS WishlistItems
+﻿DROP TABLE IF EXISTS WishListItems
 
-CREATE TABLE WishlistItems (
-	username VARCHAR(50) NOT NULL,
-	prodID VARCHAR (5) NOT NULL,	
+CREATE TABLE WishListItems (
+	username VARCHAR (50) NOT NULL,
+	prodID VARCHAR (5) NOT NULL,
 );

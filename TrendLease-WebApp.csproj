@@ -75,6 +75,7 @@
       <DependentUpon>TrendLeaseDatabase.mdf</DependentUpon>
     </Content>
     <Content Include="App_Data\UserSchema.sql" />
+    <Content Include="App_Data\WishlistSchema.sql" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
