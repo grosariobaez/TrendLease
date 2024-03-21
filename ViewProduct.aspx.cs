@@ -56,6 +56,15 @@ namespace TrendLease_WebApp
                 repository.InsertWishlist(Request.QueryString["prodID"], Request.QueryString["username"]);
             }
 
+            SpecificProductDataBind();
+
         }
+
+ 
+
+
+
+
+
     }
 }
