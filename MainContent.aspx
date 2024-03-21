@@ -76,6 +76,11 @@
                 color: white;
                 text-decoration: none;
             }
+
+        .noprod {
+            margin-bottom: 28%;
+            
+        }
     </style>
 </asp:Content>
 
@@ -107,7 +112,7 @@
         <div class="row d-flex justify-content-center">
 
             <%-- No Items in the Cart --%>
-            <div id="NoProduct" runat="server">
+            <div id="NoProduct" runat="server" class="noprod">
                 <div class="card mt-5 mb-5 text-center">
                     <div class="card-body">
                         <p class="card-text">No available items in this category.</p>
