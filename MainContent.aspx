@@ -59,6 +59,22 @@
         .card {
             border: none;
         }
+
+        .viewProdBtn {
+             background-color: transparent;
+    border: 1px solid #6a98cc; 
+    color: #6a98cc; 
+    padding: 0.375rem 0.75rem; 
+    font-size: 1rem; 
+    border-radius: 0.5rem; 
+    transition: all 0.3s ease; 
+        }
+
+        .viewProdBtn:hover {
+    background-color: #6a98cc; 
+    color: white;
+    text-decoration: none; 
+}
     </style>
 </asp:Content>
 
@@ -102,15 +118,27 @@
                                     <div>(<%# Eval("reviewCount") %>) reviews</div>
                                 </div>
 
-                                <!-- Product Title -->
-                                <div class="title-container mt-2">
-                                    <%# Eval("prodName") %>
+
+                                <div>
+                                    <div>
+                                        <!-- Product Title -->
+                                        <div class="title-container mt-2">
+                                            <%# Eval("prodName") %>
+                                        </div>
+
+                                        <!-- Product Price -->
+                                        <div class="price-container">
+                                            <%# Eval("prodPrice", "{0:C}") %>
+                                        </div>
+
+                                    </div>
+                                    <%-- Button See Product --%>
+                                    <asp:Button ID="SeeProdBtn" class="viewProdBtn mt-3" runat="server" Text="View Product" OnClick="SeeProdBtn_Click" />
                                 </div>
 
-                                <!-- Product Price -->
-                                <div class="price-container">
-                                    <%# Eval("prodPrice", "{0:C}") %>
-                                </div>
+
+
+
 
                                 <!-- Button Overlapping -->
                                 <div class="position-absolute top-0 end-0 mt-2">
@@ -131,13 +159,6 @@
             </asp:Repeater>
 
         </div>
-
-
-
-
-
-
-
 
 
 

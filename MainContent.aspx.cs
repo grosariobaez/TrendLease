@@ -31,9 +31,9 @@ namespace TrendLease_WebApp
             ItemsRepeater.DataBind();
         }
 
+        protected void SeeProdBtn_Click(object sender, EventArgs e)
+        {
 
-
-
-
+        }
     }
 }
