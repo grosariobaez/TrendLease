@@ -79,7 +79,6 @@
 
         .noprod {
             margin-bottom: 28%;
-            
         }
     </style>
 </asp:Content>
@@ -143,7 +142,7 @@
 
                                     </div>
                                     <%-- Button See Product --%>
-                                    <asp:Button ID="SeeProdBtn" class="viewProdBtn mt-3" runat="server" Text="View Product" OnClick="SeeProdBtn_Click" />
+                                    <asp:Button ID="SeeProdBtn" class="viewProdBtn mt-3" runat="server" Text="View Product" OnClick="SeeProdBtn_Click" CommandArgument='<%# Eval("prodID") %>' />
                                 </div>
 
 

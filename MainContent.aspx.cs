@@ -20,7 +20,6 @@ namespace TrendLease_WebApp
 
             BindProductRepeater();
 
-            // Manually trigger the RadioButton_CheckedChanged event for the "All" option
             RadioButton_CheckedChanged(RadioButton6, EventArgs.Empty);
         }
 
@@ -50,19 +49,19 @@ namespace TrendLease_WebApp
             ItemsRepeater.DataSource = filteredProducts;
             ItemsRepeater.DataBind();
 
-            // Show or hide the NoProduct div based on the count of filtered products
             NoProduct.Visible = filteredProducts.Count == 0;
         }
 
 
         protected void SeeProdBtn_Click(object sender, EventArgs e)
         {
-            //Button button = (Button)sender;
-            //RepeaterItem item = (RepeaterItem)button.NamingContainer;
-
             
-            Response.Redirect("ViewProduct.aspx?username=" + Session["Username"]);
+            Button button = (Button)sender;
+            string prodID = button.CommandArgument.ToString();
+
+            Response.Redirect($"ViewProduct.aspx?username={Session["Username"]}&prodID={prodID}");
         }
+
 
     }
 }
