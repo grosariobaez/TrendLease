@@ -100,7 +100,7 @@ namespace TrendLease_WebApp
                         else
                         {
                             Response.Write($"<script>alert('Item {prodName} added to wishlist.');</script>");
-                            repository.InsertWishlist(prodID, username);
+                            repository.InsertWishlist(username, prodID);
                         }
                     }
                 }

@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\CartSchema.sql" />
     <Content Include="App_Data\ProductInsert.sql" />
     <Content Include="App_Data\ProductsSchema.sql" />
     <Content Include="App_Data\RatingSchema.sql" />
@@ -76,6 +77,7 @@
     </Content>
     <Content Include="App_Data\UserSchema.sql" />
     <Content Include="App_Data\WishlistSchema.sql" />
+    <Content Include="Cart.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -114,14 +116,24 @@
     <Content Include="Styles\Entry.css" />
     <Content Include="ViewProduct.aspx" />
     <Content Include="Web.config" />
+    <Content Include="Wishlist.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\Carts\Cart.cs" />
+    <Compile Include="App\Carts\CartRepository.cs" />
     <Compile Include="App\Products\Product.cs" />
     <Compile Include="App\Products\ProductRepository.cs" />
     <Compile Include="App\Users\User.cs" />
     <Compile Include="App\Users\UserRepository.cs" />
     <Compile Include="App\Wishlists\Wishlist.cs" />
     <Compile Include="App\Wishlists\WishlistRepository.cs" />
+    <Compile Include="Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -178,6 +190,13 @@
     </Compile>
     <Compile Include="ViewProduct.aspx.designer.cs">
       <DependentUpon>ViewProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Wishlist.aspx.cs">
+      <DependentUpon>Wishlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Wishlist.aspx.designer.cs">
+      <DependentUpon>Wishlist.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

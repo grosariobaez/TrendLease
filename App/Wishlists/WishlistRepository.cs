@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using TrendLease_WebApp.App.Products;
 
 namespace TrendLease_WebApp.App.Wishlists
 {
@@ -37,7 +38,7 @@ namespace TrendLease_WebApp.App.Wishlists
                             insertCommand.ExecuteNonQuery();
                         }
                     }
-                    
+
                 }
             }
         }
@@ -62,6 +63,52 @@ namespace TrendLease_WebApp.App.Wishlists
             }
         }
 
+
+
+        // get wishlist (specific user)
+        public IEnumerable<Wishlist> GetWishlists(string username)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = connection.CreateCommand())
+            {
+                connection.Open();
+
+
+                command.CommandText = @"SELECT prodName, prodDesc, prodType, prodPrice, WishlistItems.prodID FROM WishlistItems 
+                                       LEFT JOIN Products 
+                                       ON Products.prodID = WishlistItems.prodID
+                                       WHERE username = @username;";
+
+                command.Parameters.AddWithValue ("username", username);
+
+
+                using (var reader = command.ExecuteReader())
+                {
+                    var products = new List<Wishlist>();
+
+                    while (reader.Read())
+                    {
+                        products.Add(new Wishlist
+                        {
+                            prodName = reader["prodName"].ToString(),
+                            prodID = reader["prodID"].ToString(),
+                            //prodName = reader["prodName"].ToString(),
+                            //prodID = reader["prodID"].ToString(),
+                            //prodDesc = reader["prodDesc"].ToString(),
+                            //prodType = reader["prodType"].ToString(),
+                            //prodPrice = Convert.ToSingle(reader["prodPrice"]),
+                            //prodAvail = (bool)reader["prodAvail"],
+                            //prodRating = Convert.ToSingle(reader["userRating"]),
+                            //reviewCount = Convert.ToInt32(reader["ProductReviews"])
+                        });
+                    }
+
+                    return products;
+                }
+
+
+            }
+        }
 
 
 

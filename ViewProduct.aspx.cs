@@ -53,7 +53,7 @@ namespace TrendLease_WebApp
             else
             {
                 Response.Write($"<script>alert('Item {prodName} added to wishlist.');</script>");
-                repository.InsertWishlist(Request.QueryString["prodID"], Request.QueryString["username"]);
+                repository.InsertWishlist(Request.QueryString["username"], Request.QueryString["prodID"]);
             }
 
             SpecificProductDataBind();
