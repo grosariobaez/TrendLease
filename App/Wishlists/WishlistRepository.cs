@@ -92,11 +92,10 @@ namespace TrendLease_WebApp.App.Wishlists
                         {
                             prodName = reader["prodName"].ToString(),
                             prodID = reader["prodID"].ToString(),
-                            //prodName = reader["prodName"].ToString(),
-                            //prodID = reader["prodID"].ToString(),
+                            prodPrice = Convert.ToSingle(reader["prodPrice"]),
+                            prodType = reader["prodType"].ToString(),
+                            //username = reader["username"].ToString(),   
                             //prodDesc = reader["prodDesc"].ToString(),
-                            //prodType = reader["prodType"].ToString(),
-                            //prodPrice = Convert.ToSingle(reader["prodPrice"]),
                             //prodAvail = (bool)reader["prodAvail"],
                             //prodRating = Convert.ToSingle(reader["userRating"]),
                             //reviewCount = Convert.ToInt32(reader["ProductReviews"])
