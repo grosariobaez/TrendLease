@@ -48,7 +48,7 @@ namespace TrendLease_WebApp
             WishlistRepository repository = new WishlistRepository();
 
 
-            if (repository.IsItemInWishlist(Request.QueryString["prodID"], Request.QueryString["username"]))
+            if (repository.IsItemInWishlist(Request.QueryString["username"], Request.QueryString["prodID"]))
             {
                 Response.Write($"<script>alert('Item {prodName} is already in your wishlist.');</script>");
             }

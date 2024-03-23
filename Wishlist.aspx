@@ -78,7 +78,7 @@
                                                 <p class="card-title prod-type"><%# Eval("prodType") %></p>
                                             </div>
                                             <div>
-                                                <asp:Button ID="Button2" class="btn-close btn-sm" runat="server" />
+                                                <asp:Button ID="deleteToWishlist" class="btn-close btn-sm" runat="server" OnClick="deleteToWishlist_Click" CommandArgument='<%# Eval("prodID") %>' />
                                             </div>
                                         </div>
                                         <p class="card-text prod-title"><%# Eval("prodName") %></p>
@@ -86,7 +86,7 @@
                                     </div>
                                     <!-- Add to Cart Button -->
                                     <div class="card-footer bg-transparent border-0" style="position: absolute; bottom: 0; right: 0;">
-                                        <asp:Button ID="addToCartBtn" runat="server" Text="Add to Cart" class="addToCartBtn" />
+                                        <asp:Button ID="addToCartBtn" runat="server" Text="Add to Cart" class="addToCartBtn" OnClick="addToCartBtn_Click" CommandArgument='<%# Eval("prodID") %>' />
                                     </div>
                                 </div>
                             </div>

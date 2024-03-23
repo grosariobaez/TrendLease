@@ -111,5 +111,26 @@ namespace TrendLease_WebApp.App.Wishlists
 
 
 
+        // delete from wishlist
+        public void DeleteFromWishlist(string username, string prodID)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = connection.CreateCommand())
+            {
+                connection.Open();
+
+                command.CommandText = @"DELETE FROM WishListItems WHERE username = @username AND prodID = @prodID";
+                command.Parameters.AddWithValue("username", username); 
+                command.Parameters.AddWithValue("prodID", prodID);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+
+
+
+
     }
 }
