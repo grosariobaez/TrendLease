@@ -10,5 +10,7 @@ namespace TrendLease_WebApp.App.Carts
         public string prodID {  get; set; }
         public string prodName { get; set; }
         public float prodPrice { get; set; }
+
+
     }
 }

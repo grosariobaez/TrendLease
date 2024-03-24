@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Nav-1.Master" AutoEventWireup="true" CodeBehind="Wishlist.aspx.cs" Inherits="TrendLease_WebApp.Wishlist" %>
+﻿<%@ Page Title="My Wishlist" Language="C#" MasterPageFile="~/Nav-1.Master" AutoEventWireup="true" CodeBehind="Wishlist.aspx.cs" Inherits="TrendLease_WebApp.Wishlist" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -7,7 +7,7 @@
         .prod-card {
             width: 100%;
             height: auto;
-            object-fit: cover; 
+            object-fit: cover;
         }
 
         .prod-type {
@@ -25,19 +25,19 @@
             font-size: 14px;
             background-color: #6A98CC;
             padding: 4px calc(16px + 5px);
-            color: #fff; 
+            color: #fff;
             border: none;
-            border-radius: 4px; 
-            cursor: pointer; 
+            border-radius: 4px;
+            cursor: pointer;
             transition: background-color 0.3s;
             position: absolute;
-            bottom: 20px; 
+            bottom: 20px;
             right: 10px;
         }
 
-        .addToCartBtn:hover {
-            background-color: #2D3C4D; 
-        }
+            .addToCartBtn:hover {
+                background-color: #2D3C4D;
+            }
 
         .main-title {
             font-size: 28px;
@@ -45,9 +45,9 @@
             color: #2D3C4D;
         }
 
-        .main-title:hover {
-            color: #2D3C4D;
-        }
+            .main-title:hover {
+                color: #2D3C4D;
+            }
 
         @media (max-width: 1200px) {
             .prod-card {
@@ -57,14 +57,21 @@
     </style>
 
     <div class="container mb-5">
-        <div class="row">
-            <div class="col-12 mb-5 mt-3 main-title">
-                My Wishlist
+        <h1 class="mb-5 mt-3 main-title">My Wishlist
+        </h1>
+        <div id="NoProduct" runat="server">
+            <div class="card text-center">
+                <div class="card-body">
+                    <p class="card-text">You have no items in your wishlist.</p>
+                </div>
             </div>
+        </div>
+        <div class="row">
+
             <asp:Repeater ID="WishlistRepeater" runat="server">
                 <ItemTemplate>
                     <div class="col-md-6">
-                        <div class="card mb-3" style="position: relative;"> 
+                        <div class="card mb-3" style="position: relative;">
                             <div class="row g-0">
                                 <div class="col-md-7">
                                     <!-- Image -->
@@ -78,7 +85,7 @@
                                                 <p class="card-title prod-type"><%# Eval("prodType") %></p>
                                             </div>
                                             <div>
-                                                <asp:Button ID="Button2" class="btn-close btn-sm" runat="server" />
+                                                <asp:Button ID="deleteToWishlist" class="btn-close btn-sm" runat="server" OnClick="deleteToWishlist_Click" CommandArgument='<%# Eval("prodID") %>' />
                                             </div>
                                         </div>
                                         <p class="card-text prod-title"><%# Eval("prodName") %></p>
@@ -86,7 +93,7 @@
                                     </div>
                                     <!-- Add to Cart Button -->
                                     <div class="card-footer bg-transparent border-0" style="position: absolute; bottom: 0; right: 0;">
-                                        <asp:Button ID="addToCartBtn" runat="server" Text="Add to Cart" class="addToCartBtn" />
+                                        <asp:Button ID="addToCartBtn" runat="server" Text="Add to Cart" class="addToCartBtn" OnClick="addToCartBtn_Click" CommandArgument='<%# Eval("prodID") %>' />
                                     </div>
                                 </div>
                             </div>

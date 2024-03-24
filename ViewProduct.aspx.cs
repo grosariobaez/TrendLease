@@ -24,6 +24,20 @@ namespace TrendLease_WebApp
 
             SpecificProductDataBind();
 
+            SetPageTitle();
+
+        }
+
+        private void SetPageTitle()
+        {
+            // Fetch product name from the first item in the repeater (assuming there's only one product)
+            var productNameLabel = (Label)ViewProductRepeater.Controls[0].FindControl("productName");
+
+            if (productNameLabel != null)
+            {
+                // Set page title dynamically
+                Page.Title = productNameLabel.Text;
+            }
         }
 
         public void SpecificProductDataBind()
@@ -48,7 +62,7 @@ namespace TrendLease_WebApp
             WishlistRepository repository = new WishlistRepository();
 
 
-            if (repository.IsItemInWishlist(Request.QueryString["prodID"], Request.QueryString["username"]))
+            if (repository.IsItemInWishlist(Request.QueryString["username"], Request.QueryString["prodID"]))
             {
                 Response.Write($"<script>alert('Item {prodName} is already in your wishlist.');</script>");
             }
@@ -68,12 +82,12 @@ namespace TrendLease_WebApp
             string username = Request.QueryString["username"];
             string prodID = Request.QueryString["prodID"];
 
-            
+
             CartRepository repository = new CartRepository();
 
             bool itemExistsInCart = repository.ItemExistsInCart(username, prodID);
 
-         
+
             if (!itemExistsInCart)
             {
                 repository.InsertItemCart(username, prodID);
