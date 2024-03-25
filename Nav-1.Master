@@ -35,7 +35,17 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link me-5" href='<%= "Wishlist.aspx?username=" + Session["Username"] %>'>Wish List</a>
+                    </li>
+                    <li class="nav-item">
+                        <%
+                            string username = Session["Username"]?.ToString();
+                            if (!string.IsNullOrEmpty(username))
+                            {
+                                username = char.ToUpper(username[0]) + username.Substring(1);
+                            }
+                        %>
 
+                        <a class="nav-link me-5" href='<%= "Profile.aspx?username=" + Server.UrlEncode(username) %>'><%= username %></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Home.aspx">Logout</a>

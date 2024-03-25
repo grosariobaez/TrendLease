@@ -39,6 +39,10 @@
                 background-color: #2D3C4D;
             }
 
+        .card-container {
+            box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+        }
+
         .main-title {
             font-size: 28px;
             font-weight: 700;
@@ -56,9 +60,8 @@
         }
     </style>
 
-    <div class="container mb-5">
-        <h1 class="mb-5 mt-3 main-title">My Wishlist
-        </h1>
+    <div class="container mb-5 mt-5">
+         <h1 class="mb-5 mt-3">My Wish List</h1>
         <div id="NoProduct" runat="server">
             <div class="card text-center">
                 <div class="card-body">
@@ -71,7 +74,7 @@
             <asp:Repeater ID="WishlistRepeater" runat="server">
                 <ItemTemplate>
                     <div class="col-md-6">
-                        <div class="card mb-3" style="position: relative;">
+                        <div class="card mb-3 card-container" style="position: relative;">
                             <div class="row g-0">
                                 <div class="col-md-7">
                                     <!-- Image -->

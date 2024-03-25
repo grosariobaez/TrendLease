@@ -18,6 +18,10 @@
             font-weight: 700;
         }
 
+        .title {
+            color: #2D3C4D;
+        }
+
         .prod-price {
             font-size: 26px;
             font-weight: 500;
@@ -94,7 +98,7 @@
                             <div>
 
                                 <div class="prod-title">
-                                    <asp:Label ID="productName" runat="server" Text='<%# Eval("prodName") %>'></asp:Label>
+                                    <asp:Label ID="productName" class="title" runat="server" Text='<%# Eval("prodName") %>'></asp:Label>
 
                                 </div>
 
