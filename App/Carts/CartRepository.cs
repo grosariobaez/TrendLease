@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using TrendLease_WebApp.App.Products;
 
 namespace TrendLease_WebApp.App.Carts
 {

@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\CartSchema.sql" />
+    <Content Include="App_Data\OrderSchema.sql" />
     <Content Include="App_Data\ProductInsert.sql" />
     <Content Include="App_Data\ProductsSchema.sql" />
     <Content Include="App_Data\RatingSchema.sql" />
@@ -122,6 +123,9 @@
   <ItemGroup>
     <Compile Include="App\Carts\Cart.cs" />
     <Compile Include="App\Carts\CartRepository.cs" />
+    <Compile Include="App\Orders\Order.cs" />
+    <Compile Include="App\Orders\OrderForm.cs" />
+    <Compile Include="App\Orders\OrderRepository.cs" />
     <Compile Include="App\Products\Product.cs" />
     <Compile Include="App\Products\ProductRepository.cs" />
     <Compile Include="App\Users\User.cs" />

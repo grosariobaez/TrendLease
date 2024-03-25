@@ -20,19 +20,17 @@
         }
 
         .paymentBtn {
-    background-color: white; 
-    color: #6A98CC; 
-    border: 1px solid #6A98CC; 
-    border-radius: 12px; 
-    padding: 10px 20px; 
-}
+            background-color: white;
+            color: #6A98CC;
+            border: 1px solid #6A98CC;
+            border-radius: 12px;
+            padding: 10px 20px;
+        }
 
-.paymentBtn:hover {
-    
-    background-color: #6A98CC; 
-    color: #fff; 
-}
-
+            .paymentBtn:hover {
+                background-color: #6A98CC;
+                color: #fff;
+            }
     </style>
 
 
@@ -125,34 +123,63 @@
                     <%-- Calendar --%>
                     <div class="mb-5">
                         Select Date of Return:
-                            <asp:TextBox ID="TextBox1" runat="server" TextMode="Date"></asp:TextBox>
+                        <asp:TextBox ID="calendar" runat="server" TextMode="Date"></asp:TextBox><br />
+                        <asp:RequiredFieldValidator ID="dateValidator" runat="server"
+                            ControlToValidate="calendar"
+                            ErrorMessage="Please select a date of return"
+                            CssClass="text-danger"
+                            Display="Dynamic"></asp:RequiredFieldValidator>
                     </div>
 
+                    <script>
+                        // Get today's date
+                        var today = new Date();
+
+                        // Calculate the date 7 days from now
+                        var sevenDaysFromNow = new Date();
+                        sevenDaysFromNow.setDate(today.getDate() + 7);
+
+                        // Get the calendar TextBox
+                        var calendarTextBox = document.getElementById('<%= calendar.ClientID %>');
+
+                        // Set the min and max attributes to 7 days from now
+                        calendarTextBox.min = today.toISOString().split('T')[0];
+                        calendarTextBox.max = sevenDaysFromNow.toISOString().split('T')[0];
+                    </script>
 
 
 
 
                     <h5 class="card-title">Payment Information</h5>
                     <div class="mb-3">
-                        <select class="form-select" id="paymentMethod" aria-label="Payment Method">
-                            <option selected>Select Payment Method</option>
-                            <option value="credit">Credit Card</option>
-                            <option value="debit">Debit Card</option>
-                            <option value="paypal">PayPal</option>
-                        </select>
+                        <asp:DropDownList ID="paymentMethod" runat="server" CssClass="form-select"
+                            aria-label="Payment Method">
+                            <asp:ListItem Text="Select Payment Method" Value=""></asp:ListItem>
+                            <asp:ListItem Text="Credit Card" Value="credit"></asp:ListItem>
+                            <asp:ListItem Text="Debit Card" Value="debit"></asp:ListItem>
+                            <asp:ListItem Text="PayPal" Value="paypal"></asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="paymentMethodValidator" runat="server"
+                            ControlToValidate="paymentMethod" InitialValue=""
+                            ErrorMessage="Please select a payment method"
+                            CssClass="text-danger" />
+
+                    </div>
+
+
+
+                    <div class="mb-3">
+                        <asp:TextBox ID="cardholderName" class="form-control" placeholder="Enter Cardholder's Name" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Cardholder's Name is required." ControlToValidate="cardholderName" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
 
                     <div class="mb-3">
-
-                        <input type="text" class="form-control" id="cardholderName" placeholder="Enter Cardholder's Name">
-                    </div>
-
-                    <div class="mb-3">
-                        <input type="text" class="form-control" id="cardNumber" placeholder="Enter Card Number">
+                        <asp:TextBox ID="cardNumber" class="form-control" placeholder="Enter Card Number" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Card Number is required." ControlToValidate="cardNumber" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
 
 
-                    <asp:Button ID="Button1" class="btn-sm mt-3 paymentBtn" runat="server" Text="Process Payment" />
+                    <asp:Button ID="payBtn" class="btn-sm mt-3 paymentBtn" runat="server" Text="Process Payment" OnClick="payBtn_Click" />
 
 
                 </div>

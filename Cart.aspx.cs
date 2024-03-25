@@ -20,8 +20,10 @@ namespace TrendLease_WebApp
             Session["Username"] = username;
 
             CartDataBind();
-            
+
         }
+
+        
 
 
         public void CartDataBind()
@@ -43,7 +45,7 @@ namespace TrendLease_WebApp
             // Set total items and total price in frontend
             int noOfItems = cartItems.Count();
             totalItems.Text = noOfItems.ToString();
-            totalPrice.Text = totalCartPrice.ToString("F2");
+            totalPrice.Text = $"₱ {totalCartPrice.ToString("F2")}";
 
             NoProduct.Visible = noOfItems == 0;
 
@@ -67,6 +69,16 @@ namespace TrendLease_WebApp
 
             Response.Redirect(Request.RawUrl);
         }
-        
+
+        protected void payBtn_Click(object sender, EventArgs e)
+        {
+
+
+
+
+
+
+
+        }
     }
 }

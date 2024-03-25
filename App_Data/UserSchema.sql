@@ -22,5 +22,6 @@ CREATE TABLE InfoUsers(
     userAddress VARCHAR(100) NOT NULL,
     phoneNum VARCHAR(11) NOT NULL,
     emailAdd VARCHAR (100) NOT NULL,
+    orderNum int NOT NULL default '1',
     FOREIGN KEY (username) REFERENCES Users(username)
 );
