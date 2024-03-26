@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using TrendLease_WebApp.App.Orders;
+using TrendLease_WebApp.App.Products;
 
 namespace TrendLease_WebApp
 {
@@ -22,7 +23,29 @@ namespace TrendLease_WebApp
 
                 ddlOrderStatus_SelectedIndexChanged(sender, e);
             }
+        }
 
+
+        protected void ddlOrderStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string username = Request.QueryString["username"];
+            string selectedStatus = ddlOrderStatus.SelectedValue;
+
+            OrderRepository repository = new OrderRepository();
+            IEnumerable<OrderForm> orderForms = repository.GetUserOrderFormsByStatus(username, selectedStatus);
+
+            UserOrderFormsRepeater.DataSource = orderForms;
+            UserOrderFormsRepeater.DataBind();
+
+            // Check if there are no orders in the selected category
+            if (!orderForms.Any())
+            {
+                NoProduct.Visible = true; // Show the "NoProduct" div
+            }
+            else
+            {
+                NoProduct.Visible = false; // Hide the "NoProduct" div
+            }
         }
 
         protected void ddlOrderStatus_SelectedIndexChanged(object sender, EventArgs e)
