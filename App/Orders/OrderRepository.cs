@@ -201,7 +201,6 @@ namespace TrendLease_WebApp.App.Orders
             {
                 connection.Open();
 
-                // Adjust the SQL query based on the order status category
                 string query = @"SELECT * FROM OrderForm WHERE username = @username";
 
                 if (orderStatus == "InProcess")
@@ -341,9 +340,9 @@ namespace TrendLease_WebApp.App.Orders
                 command.CommandText = @"SELECT COUNT(*) FROM CartItems WHERE username = @username";
                 command.Parameters.AddWithValue("@username", username);
 
-                int count = (int)command.ExecuteScalar(); // ExecuteScalar returns the first column of the first row
+                int count = (int)command.ExecuteScalar(); 
 
-                return count == 0; // If count is zero, cart is empty
+                return count == 0; 
             }
         }
 

@@ -37,14 +37,13 @@ namespace TrendLease_WebApp
             UserOrderFormsRepeater.DataSource = orderForms;
             UserOrderFormsRepeater.DataBind();
 
-            // Check if there are no orders in the selected category
             if (!orderForms.Any())
             {
-                NoProduct.Visible = true; // Show the "NoProduct" div
+                NoProduct.Visible = true; 
             }
             else
             {
-                NoProduct.Visible = false; // Hide the "NoProduct" div
+                NoProduct.Visible = false;
             }
         }
 
@@ -104,7 +103,6 @@ namespace TrendLease_WebApp
             foreach (OrderItems orderItem in orderItems)
             {
                 // Construct HTML for each order item
-
                 itemsHtml +=
                 $"<div class='row justify-content-center mb-3 d-flex align-items-center'>" +
                     $"<img class='col' height='125rem' src='/Image/Products/{orderItem.prodID}.png' />" +
@@ -113,11 +111,8 @@ namespace TrendLease_WebApp
                     $"</div>";
 
                 addItems += orderItem.prodPrice;
-
-
-
-
             }
+
             itemsHtml +=
                 $"<h6 class='col text-end'>" +
                 $"Total Price: ₱ {addItems}.00" +
@@ -131,15 +126,12 @@ namespace TrendLease_WebApp
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                // Find the modal control within the repeater item
                 HtmlGenericControl modalBody = (HtmlGenericControl)e.Item.FindControl("modalBody");
 
                 if (modalBody != null)
                 {
-                    // Get the orderID from the data item
                     string orderID = DataBinder.Eval(e.Item.DataItem, "orderID").ToString();
 
-                    // Set the modal body text to the orderID
                     modalBody.InnerText = orderID;
                 }
             }

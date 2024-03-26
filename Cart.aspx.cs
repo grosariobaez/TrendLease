@@ -24,9 +24,6 @@ namespace TrendLease_WebApp
 
         }
 
-
-
-
         public void CartDataBind()
         {
             // Get cart items from the repository
@@ -104,12 +101,7 @@ namespace TrendLease_WebApp
 
             repository.StorePaymentInfo(payment);
 
-
-
-
             float total = float.Parse(totalPrice.Text);
-
-
             // store order form
             OrderForm form = new OrderForm(
                 transactionID,
@@ -125,7 +117,6 @@ namespace TrendLease_WebApp
     
             // store order items
             repository.StoreOrderItem(transactionID, Request.QueryString["username"]);
-
 
 
             Response.Write($"<script>alert('{transactionID}')</script>");
