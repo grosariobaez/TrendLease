@@ -2,6 +2,7 @@
 <br>
 TrendLease is a web development project that establishes an innovative online platform for facilitating the rental of unisex clothing items. By providing a seamless and convenient solution, the website addresses the common dilemma faced by individuals who need clothes without the commitment to purchase.  
 <br>
+<br>
 This project was done by Vince Joseph Arbutante, Louise Angela Caballero, Georgette Dalen Cadiz, Wince Larcen Rivano, and Zhen Marie Villanueva, as a machine problem project for IT114L. 
 
 ## 1. 💬 
