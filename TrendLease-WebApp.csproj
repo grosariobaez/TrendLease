@@ -123,9 +123,10 @@
   <ItemGroup>
     <Compile Include="App\Carts\Cart.cs" />
     <Compile Include="App\Carts\CartRepository.cs" />
-    <Compile Include="App\Orders\Order.cs" />
+    <Compile Include="App\Orders\OrderItems.cs" />
     <Compile Include="App\Orders\OrderForm.cs" />
     <Compile Include="App\Orders\OrderRepository.cs" />
+    <Compile Include="App\Orders\PaymentInfo.cs" />
     <Compile Include="App\Products\Product.cs" />
     <Compile Include="App\Products\ProductRepository.cs" />
     <Compile Include="App\Users\User.cs" />

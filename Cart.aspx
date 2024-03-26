@@ -132,17 +132,13 @@
                     </div>
 
                     <script>
-                        // Get today's date
                         var today = new Date();
 
-                        // Calculate the date 7 days from now
                         var sevenDaysFromNow = new Date();
                         sevenDaysFromNow.setDate(today.getDate() + 7);
 
-                        // Get the calendar TextBox
                         var calendarTextBox = document.getElementById('<%= calendar.ClientID %>');
 
-                        // Set the min and max attributes to 7 days from now
                         calendarTextBox.min = today.toISOString().split('T')[0];
                         calendarTextBox.max = sevenDaysFromNow.toISOString().split('T')[0];
                     </script>
@@ -163,7 +159,6 @@
                             ControlToValidate="paymentMethod" InitialValue=""
                             ErrorMessage="Please select a payment method"
                             CssClass="text-danger" />
-
                     </div>
 
 
