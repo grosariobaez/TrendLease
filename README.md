@@ -40,9 +40,56 @@ This project was done by Vince Joseph Arbutante, Louise Angela Caballero, George
 
 ## 3. 💬 What is the architecture of this project?
 
-> [!NOTE]
-> Hmmmmmmmmm
+> [!IMPORTANT]
+> The architecture of the TrendLease project follows a web application architecture, comprising multiple layers and components to ensure scalability, reliability, and maintainability. Below is a discussion of a high-level overview of the architecture
+> <br /> <br />
+> **✨ Client-Side (Frontend) ✨**
+> <br />
+> **User Interface**
+> <br /> 
+> The frontend layer consists of the user interface that users interact with. This includes web pages, forms, and elements for browsing clothing items, viewing product details, adding items to the cart, and completing the checkout process.
+> <br /> <br />
+> **Technologies**
+> <br /> 
+> HTML, CSS, Bootstrap, Javascript, and ASP NET Webforms
+> <br /> <br />
+> **Responsibilities**
+> <br /> 
+> Handling user interactions, displaying data, and making requests to the backend server.
+> <br /> <br />
 >
+> **✨ Server-Side (Backend) ✨**
+> <br />
+> **Application Logic**
+> <br /> 
+> The backend layer handles the core application logic, including user authentication, product management, order processing, and payment handling.
+> <br /> <br />
+> **Technologies**
+> <br /> 
+> C#
+> <br /> <br />
+> **Responsibilities**
+> <br /> 
+> Managing user accounts, processing requests, and interacting with the database.
+><br /> <br />
+> 
+> **✨ Database Layer ✨**
+> <br />
+> **Database Management System (DBMS)**
+> <br /> 
+> Stores and manages data related to users, products, orders, and transactions.
+> <br /> <br />
+> **Schema**
+> <br /> 
+> Defines the structure of the database tables and relationships between them.
+> <br /> <br />
+> **Technologies**
+> <br /> 
+> SQL (Relational databases)
+> <br /> <br />
+> **Responsibilities**
+> <br /> 
+> Storing and retrieving data, ensuring data integrity, and supporting complex queries.
 
 ## 4. 💬 What are the features of this project?
 > [!IMPORTANT]
