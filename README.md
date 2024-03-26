@@ -45,7 +45,26 @@ This project was done by Vince Joseph Arbutante, Louise Angela Caballero, George
 >
 
 ## 4. 💬 What are the features of this project?
-> [!NOTE]
-> Hmmmmmmmmm
+> [!IMPORTANT]
+> <h4>🚀 User Registration and Login Functionality</h4>
+> Users can register and create accounts to access the website's features. 
+> <br /> <br />
+> <h4>🚀 Browsing and Category Options</h4>
+> Users can browse clothing items by type or category to easily find items that match their preferences.
+> <br /> <br />
+> <h4>🚀 Detailed Product Descriptions</h4> 
+> Users can view comprehensive product descriptions, including images, sizes, prices, and rental durations, to make informed decisions about which items to rent.
+> <br /> <br />
+> <h4>🚀 Add to Cart</h4> 
+> Users can add desired items to their cart for rental.
+> <br /> <br />
+> <h4>🚀 Secure Checkout Payment Processing</h4>
+> The platform ensures secure checkout and payment processing with various payment methods, allowing users to complete transactions safely.
+> <br /> <br />
+> <h4>🚀 Order Tracking</h4> 
+> Users can track the status of their rental orders via their account dashboard, enabling them to stay updated on their transactions.
+> <br /> <br />
+> <h4>🚀 Rating System</h4>
+> Users can provide ratings on rented items, facilitating communication and enhancing the user experience.
 >
 
