@@ -48,27 +48,7 @@ namespace TrendLease_WebApp
             }
         }
 
-        protected void ddlOrderStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string username = Request.QueryString["username"];
-            string selectedStatus = ddlOrderStatus.SelectedValue;
-
-            OrderRepository repository = new OrderRepository();
-            IEnumerable<OrderForm> orderForms = repository.GetUserOrderFormsByStatus(username, selectedStatus);
-
-            UserOrderFormsRepeater.DataSource = orderForms;
-            UserOrderFormsRepeater.DataBind();
-
-            // Check if there are no orders in the selected category
-            if (!orderForms.Any())
-            {
-                NoProduct.Visible = true; // Show the "NoProduct" div
-            }
-            else
-            {
-                NoProduct.Visible = false; // Hide the "NoProduct" div
-            }
-        }
+       
 
         public void BindData()
         {

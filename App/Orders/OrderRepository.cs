@@ -250,63 +250,6 @@ namespace TrendLease_WebApp.App.Orders
             }
         }
 
-        public IEnumerable<OrderForm> GetUserOrderFormsByStatus(string username, string orderStatus)
-        {
-            using (var connection = new SqlConnection(connectionString))
-            using (var command = connection.CreateCommand())
-            {
-                connection.Open();
-
-                // Adjust the SQL query based on the order status category
-                string query = @"SELECT * FROM OrderForm WHERE username = @username";
-
-                if (orderStatus == "InProcess")
-                {
-                    query += " AND orderStatus IN ('Order Placed', 'Preparing to Ship', 'In Transit')";
-                }
-                else if (orderStatus == "Delivered")
-                {
-                    query += " AND orderStatus = 'Delivered'";
-                }
-                else if (orderStatus == "ToReturn")
-                {
-                    query += " AND orderStatus = 'To Return'";
-                }
-                else if (orderStatus == "Completed")
-                {
-                    query += " AND orderStatus = 'To Return'"; 
-                }
-
-                command.CommandText = query;
-                command.Parameters.AddWithValue("@username", username);
-
-                List<OrderForm> orderForms = new List<OrderForm>();
-
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        TimeSpan orderTime = reader.GetTimeSpan(reader.GetOrdinal("orderTime"));
-
-                        OrderForm orderForm = new OrderForm(
-                            reader["orderID"].ToString(),
-                            username,
-                            reader["orderStatus"].ToString(),
-                            Convert.ToDateTime(reader["orderDate"]),
-                            Convert.ToDateTime(reader["returnDate"]),
-                            reader.GetOrdinal("orderTotal"),
-                            orderTime
-                        );
-
-                        orderForms.Add(orderForm);
-                    }
-                }
-
-                return orderForms;
-            }
-        }
-
-
 
         public IEnumerable<OrderItems> GetUserOrderItems(string orderID)
         {
