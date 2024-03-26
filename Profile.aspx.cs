@@ -165,6 +165,8 @@ namespace TrendLease_WebApp
             Button btn = (Button)sender;
             string orderID = btn.CommandArgument;
 
+            // Get all prodIDs associated with the orderID
+            List<string> prodIDs = repository.GetProdIDsByOrderID(orderID);
 
             RepeaterItem repeaterItem = (RepeaterItem)btn.NamingContainer;
             FileUpload receipt = (FileUpload)repeaterItem.FindControl("receipt");
@@ -178,24 +180,33 @@ namespace TrendLease_WebApp
                 {
                     byte[] fileBytes = receipt.FileBytes;
 
+                    // Store the receipt
                     repository.StoreReceipt(Request.QueryString["username"], orderID, fileBytes);
 
+                    // Set availability for each prodID
+                    foreach (string prodID in prodIDs)
+                    {
+                        repository.SetProdAvail(prodID);
+                    }
+
+                    // Redirect to the same page after processing
                     Response.Redirect(Request.RawUrl);
 
+                    // Show success message
                     Response.Write($"<script>alert('Receipt uploaded for order ID: {orderID}');</script>");
                 }
                 else
                 {
+                    // Show error message if file format is not supported
                     Response.Write("<script>alert('Only PNG, JPG, or JPEG files are allowed');</script>");
                 }
             }
             else
             {
+                // Show error message if no file is selected
                 Response.Write("<script>alert('Please select a file to upload');</script>");
             }
-
-
-
         }
+
     }
 }
