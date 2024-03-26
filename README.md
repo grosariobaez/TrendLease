@@ -10,8 +10,14 @@ This project was done by Vince Joseph Arbutante, Louise Angela Caballero, George
 > <b>How to configure this project?</b>
 
 > [!NOTE]
-> Hmmmmmmmmm
->
+> Step 1: Ensure that Microsoft Visual Studio is installed on your system.
+> Step 2: Copy all the contents of the CompleteSQLStatements.sql file located inside the App_Data folder of your project.
+> Step 3: Right-click on the App_Data folder within your Visual Studio project, and select "Add" > "New Item".
+> Step 4: Choose "SQL Server Database" and name the new database file as TrendLeaseDatabase.mdf. This will create a new database file within your project.
+> Step 5: Navigate to the "Server Explorer" within Visual Studio. Right-click on "DefaultConnection (TrendLease-WebApp)" and select "Add New Query".
+> Step 6: Paste all the database schemas copied from CompleteSQLStatements.sql into the query window.
+> Step 7: Execute and run the query. This will create all the necessary database tables for the program to function smoothly.
+
 ## 2. 💬 
 > [!IMPORTANT]
 > <b>How to run the program?</b>
