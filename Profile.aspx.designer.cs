@@ -15,6 +15,15 @@ namespace TrendLease_WebApp
     {
 
         /// <summary>
+        /// ddlOrderStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlOrderStatus;
+
+        /// <summary>
         /// UserOrderFormsRepeater control.
         /// </summary>
         /// <remarks>
@@ -22,5 +31,14 @@ namespace TrendLease_WebApp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater UserOrderFormsRepeater;
+
+        /// <summary>
+        /// NoProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NoProduct;
     }
 }

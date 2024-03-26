@@ -62,9 +62,6 @@ namespace TrendLease_WebApp
 
             CartRepository repository = new CartRepository();
 
-
-            // validation
-
             // delete from wishlist
             repository.DeleteFromCart(username, prodID);
 
@@ -76,6 +73,13 @@ namespace TrendLease_WebApp
             Button button = (Button)sender;
 
             OrderRepository repository = new OrderRepository();
+
+
+            if (repository.IsCartEmpty(Request.QueryString["username"]))
+            {
+                Response.Write($"<script>alert(\"You don't have any items in your cart.\")</script>");
+                return;
+            }
 
             // transaction ID
             string transactionID = repository.GetTransactionID(Request.QueryString["username"]);
@@ -123,7 +127,11 @@ namespace TrendLease_WebApp
             repository.StoreOrderItem(transactionID, Request.QueryString["username"]);
 
 
+
             Response.Write($"<script>alert('{transactionID}')</script>");
+            Response.Write("<script>setTimeout(function() {");
+            Response.Write($"window.location.href = 'Profile.aspx?username={Server.UrlEncode(Request.QueryString["username"])}';");
+            Response.Write("}, 1000);</script>");
 
         }
     }

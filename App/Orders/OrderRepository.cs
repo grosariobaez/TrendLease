@@ -151,7 +151,7 @@ namespace TrendLease_WebApp.App.Orders
         }
 
 
-        // get order forms 
+        // get order forms from a specific user
         public IEnumerable<OrderForm> GetUserOrderForms(string username)
         {
             using (var connection = new SqlConnection(connectionString))
@@ -194,6 +194,63 @@ namespace TrendLease_WebApp.App.Orders
 
         }
 
+        public IEnumerable<OrderForm> GetUserOrderFormsByStatus(string username, string orderStatus)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = connection.CreateCommand())
+            {
+                connection.Open();
+
+                // Adjust the SQL query based on the order status category
+                string query = @"SELECT * FROM OrderForm WHERE username = @username";
+
+                if (orderStatus == "InProcess")
+                {
+                    query += " AND orderStatus IN ('Order Placed', 'Preparing to Ship', 'In Transit')";
+                }
+                else if (orderStatus == "Delivered")
+                {
+                    query += " AND orderStatus = 'Delivered'";
+                }
+                else if (orderStatus == "ToReturn")
+                {
+                    query += " AND orderStatus = 'To Return'";
+                }
+                else if (orderStatus == "Completed")
+                {
+                    query += " AND orderStatus = 'To Return'";
+                }
+
+                command.CommandText = query;
+                command.Parameters.AddWithValue("@username", username);
+
+                List<OrderForm> orderForms = new List<OrderForm>();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        TimeSpan orderTime = reader.GetTimeSpan(reader.GetOrdinal("orderTime"));
+
+                        OrderForm orderForm = new OrderForm(
+                            reader["orderID"].ToString(),
+                            username,
+                            reader["orderStatus"].ToString(),
+                            Convert.ToDateTime(reader["orderDate"]),
+                            Convert.ToDateTime(reader["returnDate"]),
+                            reader.GetOrdinal("orderTotal"),
+                            orderTime
+                        );
+
+                        orderForms.Add(orderForm);
+                    }
+                }
+
+                return orderForms;
+            }
+        }
+
+
 
         public IEnumerable<OrderItems> GetUserOrderItems(string orderID)
         {
@@ -233,8 +290,63 @@ namespace TrendLease_WebApp.App.Orders
         }
 
 
+        // get information on the orderForm from the orderID
+        public IEnumerable<OrderForm> GetInfoOrderForm(string username, string orderID)
+        {
+            List<OrderForm> orderItemsList = new List<OrderForm>();
+
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = connection.CreateCommand())
+            {
+                connection.Open();
+
+                command.CommandText = @"SELECT * FROM OrderForm WHERE orderID = @orderID";
+                command.Parameters.Add("orderID", orderID);
 
 
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        TimeSpan orderTime = reader.GetTimeSpan(reader.GetOrdinal("orderTime"));
+
+                        OrderForm form = new OrderForm (
+                            reader["orderID"].ToString(),
+                            username,
+                            reader["orderStatus"].ToString(),
+                            Convert.ToDateTime(reader["orderDate"]),
+                            Convert.ToDateTime(reader["returnDate"]),
+                            reader.GetOrdinal("orderTotal"),
+                            orderTime
+                        );
+
+                        orderItemsList.Add(form);
+
+                    }
+                }
+            }
+
+            return orderItemsList;
+        }
+
+
+
+        public bool IsCartEmpty(string username)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = connection.CreateCommand())
+            {
+                connection.Open();
+
+                command.CommandText = @"SELECT COUNT(*) FROM CartItems WHERE username = @username";
+                command.Parameters.AddWithValue("@username", username);
+
+                int count = (int)command.ExecuteScalar(); // ExecuteScalar returns the first column of the first row
+
+                return count == 0; // If count is zero, cart is empty
+            }
+        }
 
     }
 }

@@ -17,12 +17,35 @@ namespace TrendLease_WebApp
 
             if (!IsPostBack)
             {
-                BindData();
+                ddlOrderStatus.SelectedValue = "InProcess";
+
+
+                ddlOrderStatus_SelectedIndexChanged(sender, e);
             }
 
         }
 
+        protected void ddlOrderStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string username = Request.QueryString["username"];
+            string selectedStatus = ddlOrderStatus.SelectedValue;
 
+            OrderRepository repository = new OrderRepository();
+            IEnumerable<OrderForm> orderForms = repository.GetUserOrderFormsByStatus(username, selectedStatus);
+
+            UserOrderFormsRepeater.DataSource = orderForms;
+            UserOrderFormsRepeater.DataBind();
+
+            // Check if there are no orders in the selected category
+            if (!orderForms.Any())
+            {
+                NoProduct.Visible = true; // Show the "NoProduct" div
+            }
+            else
+            {
+                NoProduct.Visible = false; // Hide the "NoProduct" div
+            }
+        }
 
         public void BindData()
         {
@@ -44,13 +67,59 @@ namespace TrendLease_WebApp
             OrderRepository repository = new OrderRepository();
             IEnumerable<OrderItems> orderItems = repository.GetUserOrderItems(orderID);
 
+            IEnumerable<OrderForm> orderInfoForm = repository.GetInfoOrderForm(Request.QueryString["username"], orderID);
+            OrderForm firstOrderForm = orderInfoForm.FirstOrDefault();
+
+
             string itemsHtml = "";
+
+            string borrowedDateHtml = @"
+                <div class='col'>
+                    <h6 class='mb-0'>Borrowed Date</h6>
+                </div>
+                <div class='col text-end'>
+                    <h6 class='mb-0'>" + Convert.ToDateTime(firstOrderForm.orderDate).ToString("MMMM dd, yyyy") + @"</h6>
+                </div>";
+
+            string returnDateHtml = @"
+                <div class='col'>
+                    <h6 class='mb-0'>Return Date</h6>
+                </div>
+                <div class='col text-end'>
+                    <h6 class='mb-0'>" + Convert.ToDateTime(firstOrderForm.returnDate).ToString("MMMM dd, yyyy") + @"</h6>
+                </div>";
+
+            itemsHtml += @"
+                <div class='row d-flex align-items-center'>" + borrowedDateHtml + @"
+                </div>
+                <div class='row d-flex align-items-center mb-3'>" + returnDateHtml + @"
+                </div>";
+
+
+            float addItems = 0;
 
             foreach (OrderItems orderItem in orderItems)
             {
                 // Construct HTML for each order item
-                itemsHtml += "<li>" + orderItem.prodName + " - ₱" + orderItem.prodPrice.ToString() + "</li>";
+
+                itemsHtml +=
+                $"<div class='row justify-content-center mb-3 d-flex align-items-center'>" +
+                    $"<img class='col' height='125rem' src='/Image/Products/{orderItem.prodID}.png' />" +
+                    $"<div class='col'>{orderItem.prodName}</div>" +
+                    $"<div class='col text-end'>₱ {orderItem.prodPrice}</div>" +
+                    $"</div>";
+
+                addItems += orderItem.prodPrice;
+
+
+
+
             }
+            itemsHtml +=
+                $"<h6 class='col text-end'>" +
+                $"Total Price: ₱ {addItems}.00" +
+                $"</h6>";
+
 
             return itemsHtml;
         }
