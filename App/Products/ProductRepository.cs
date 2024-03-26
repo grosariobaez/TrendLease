@@ -21,12 +21,10 @@ namespace TrendLease_WebApp.App.Products
             {
                 connection.Open();
 
-                command.CommandText = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, 
-                                       COALESCE(AVG(ProductRating.userRating), 0) as userRating, 
-                                       COALESCE(COUNT(ProductRating.prodID), 0) as ProductReviews
-                                       FROM Products 
-                                       LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
-                                       GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
+                command.CommandText = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, COALESCE(AVG(CASE WHEN ProductRating.userRating > 0 THEN ProductRating.userRating END), 0) AS userRating, SUM(CASE WHEN ProductRating.userRating > 0 THEN 1 ELSE 0 END) AS ProductReviews
+                                        FROM Products 
+                                        LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
+                                        GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -64,22 +62,18 @@ namespace TrendLease_WebApp.App.Products
                 string query;
                 if (category == "All")
                 {
-                    query = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, 
-                      COALESCE(AVG(ProductRating.userRating), 0) as userRating, 
-                      COALESCE(COUNT(ProductRating.prodID), 0) as ProductReviews
-                      FROM Products 
-                      LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
-                      GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
+                    query = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, COALESCE(AVG(CASE WHEN ProductRating.userRating > 0 THEN ProductRating.userRating END), 0) AS userRating, SUM(CASE WHEN ProductRating.userRating > 0 THEN 1 ELSE 0 END) AS ProductReviews
+                            FROM Products 
+                            LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
+                            GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
                 }
                 else
                 {
-                    query = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, 
-                      COALESCE(AVG(ProductRating.userRating), 0) as userRating, 
-                      COALESCE(COUNT(ProductRating.prodID), 0) as ProductReviews
-                      FROM Products 
-                      LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
-                      WHERE prodType = @category
-                      GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
+                    query = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, COALESCE(AVG(CASE WHEN ProductRating.userRating > 0 THEN ProductRating.userRating END), 0) AS userRating, SUM(CASE WHEN ProductRating.userRating > 0 THEN 1 ELSE 0 END) AS ProductReviews
+                            FROM Products 
+                            LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
+                            WHERE prodType = @category
+                            GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
                     command.Parameters.AddWithValue("@category", category);
                 }
 
@@ -119,14 +113,11 @@ namespace TrendLease_WebApp.App.Products
             {
                 connection.Open();
 
-                command.CommandText = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, 
-                      COALESCE(AVG(ProductRating.userRating), 0) as userRating, 
-                      COALESCE(COUNT(ProductRating.prodID), 0) as ProductReviews
-                      FROM Products 
-                      LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
-                      WHERE Products.prodID = @prodID
-                      GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
-
+                command.CommandText = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, COALESCE(AVG(CASE WHEN ProductRating.userRating > 0 THEN ProductRating.userRating END), 0) AS userRating, SUM(CASE WHEN ProductRating.userRating > 0 THEN 1 ELSE 0 END) AS ProductReviews
+                            FROM Products 
+                            LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
+                            WHERE Products.prodID = @prodID
+                            GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
 
 
                 command.Parameters.Add("@prodID", prodID);

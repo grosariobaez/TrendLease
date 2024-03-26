@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\CartSchema.sql" />
+    <Content Include="App_Data\CompleteSQLStatements.sql" />
     <Content Include="App_Data\OrderSchema.sql" />
     <Content Include="App_Data\ProductInsert.sql" />
     <Content Include="App_Data\ProductsSchema.sql" />
@@ -104,6 +105,29 @@
     <Content Include="Image\Products\00005.png" />
     <Content Include="Image\Products\00006.png" />
     <Content Include="Image\Products\00007.png" />
+    <Content Include="Image\Products\00008.png" />
+    <Content Include="Image\Products\00009.png" />
+    <Content Include="Image\Products\00010.png" />
+    <Content Include="Image\Products\00011.png" />
+    <Content Include="Image\Products\00012.png" />
+    <Content Include="Image\Products\00013.png" />
+    <Content Include="Image\Products\00014.png" />
+    <Content Include="Image\Products\00015.png" />
+    <Content Include="Image\Products\00016.png" />
+    <Content Include="Image\Products\00017.png" />
+    <Content Include="Image\Products\00018.png" />
+    <Content Include="Image\Products\00019.png" />
+    <Content Include="Image\Products\00020.png" />
+    <Content Include="Image\Products\00021.png" />
+    <Content Include="Image\Products\00022.png" />
+    <Content Include="Image\Products\00023.png" />
+    <Content Include="Image\Products\00024.png" />
+    <Content Include="Image\Products\00025.png" />
+    <Content Include="Image\Products\00026.png" />
+    <Content Include="Image\Products\00027.png" />
+    <Content Include="Image\Products\00028.png" />
+    <Content Include="Image\Products\00029.png" />
+    <Content Include="Image\Products\00030.png" />
     <Content Include="Login.aspx" />
     <Content Include="MainContent.aspx" />
     <Content Include="Profile.aspx" />
@@ -123,9 +147,10 @@
   <ItemGroup>
     <Compile Include="App\Carts\Cart.cs" />
     <Compile Include="App\Carts\CartRepository.cs" />
-    <Compile Include="App\Orders\Order.cs" />
+    <Compile Include="App\Orders\OrderItems.cs" />
     <Compile Include="App\Orders\OrderForm.cs" />
     <Compile Include="App\Orders\OrderRepository.cs" />
+    <Compile Include="App\Orders\PaymentInfo.cs" />
     <Compile Include="App\Products\Product.cs" />
     <Compile Include="App\Products\ProductRepository.cs" />
     <Compile Include="App\Users\User.cs" />
