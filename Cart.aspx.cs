@@ -124,6 +124,28 @@ namespace TrendLease_WebApp
             // store order items
             repository.StoreOrderItem(transactionID, Request.QueryString["username"]);
 
+            float total = float.Parse(totalPrice.Text);
+
+            Response.Write($"<script>alert('{transactionID}')</script>");
+
+            // store order form
+            OrderForm form = new OrderForm (
+                transactionID,
+                Request.QueryString["username"],
+                "Order Placed",
+                DateTime.Today,
+                DateTime.Parse(calendar.Text),
+                total,
+                DateTime.Now.TimeOfDay
+            );
+
+            repository.StoreOrderForm(form);
+
+
+
+            // store order items
+            repository.StoreOrderItem(transactionID, Request.QueryString["username"]);
+
 
             Response.Write($"<script>alert('{transactionID}')</script>");
 

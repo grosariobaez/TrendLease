@@ -7,7 +7,7 @@ namespace TrendLease_WebApp.App.Orders
 {
     public class PaymentInfo
     {
-        public string orderID { get; set; }
+        public string orderID { get; set; } 
         public string username { get; set; }
         public string cardName { get; set; }
         public string cardNum { get; set; }
