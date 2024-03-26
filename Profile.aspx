@@ -9,24 +9,30 @@
         }
 
         .modal-body {
-            background-color: #f8f9fa;
+            background-color: white;
         }
 
         .modal-footer {
-            background-color: #f8f9fa;
+            background-color: white;
         }
 
         .order-span {
             color: #2D3C4D;
+        }
+
+        .drpdwn {
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mt-5">
         <h1 class="mb-5 mt-3">My Orders</h1>
-        <div class="row">
-            <div class="col-md-2">
-                <asp:DropDownList ID="ddlOrderStatus" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlOrderStatus_SelectedIndexChanged">
+        <div class="row justify-content-center">
+
+
+            <%-- dropdown --%>
+            <div class="row container">
+                <asp:DropDownList ID="ddlOrderStatus" runat="server" class="form-select drpdwn" AutoPostBack="true" OnSelectedIndexChanged="ddlOrderStatus_SelectedIndexChanged">
                     <asp:ListItem Text="In Process" Value="InProcess"></asp:ListItem>
                     <asp:ListItem Text="Delivered" Value="Delivered"></asp:ListItem>
                     <asp:ListItem Text="To Return" Value="ToReturn"></asp:ListItem>
@@ -35,10 +41,30 @@
             </div>
 
             <div>
+                <%-- header --%>
+                <div class="card p-1 mt-4 mb-4">
+                    <div class="row">
+                        <div class="col-md-3 d-flex justify-content-center align-items-center">
+                            <div></div>
+                        </div>
+                        <h6 class="col-md-3 d-flex justify-content-center align-items-center">
+                            <div>Order Date</div>
+                        </h6>
+                        <h6 class="col-md-3 d-flex justify-content-center align-items-center">
+                            <div>Return Date</div>
+                        </h6>
+                        <h6 class="col-md-3 d-flex justify-content-center align-items-center">
+                            <div>Total Price</div>
+                        </h6>
+                    </div>
+                </div>
+
+
+
+                <%-- Main Content --%>
                 <asp:Repeater ID="UserOrderFormsRepeater" runat="server" OnItemDataBound="UserOrderFormsRepeater_ItemDataBound">
                     <ItemTemplate>
                         <div class="card mt-3 mb-3 p-3">
-
 
                             <a href="#" class="row" data-bs-toggle="modal" data-bs-target="#itemProd<%# Container.ItemIndex %>">
 
@@ -65,9 +91,7 @@
                                 </div>
                                 <div class="col-md-3 d-flex justify-content-center align-items-center">
                                     <%-- order status --%>
-                                    <span class="order-span">
-                                        <%# Eval("orderStatus") %>
-                                    </span>
+                                    <asp:Label ID="statusLbl" runat="server" class="order-span" Text='<%# Eval("orderStatus") %>'></asp:Label>
                                 </div>
                             </a>
                         </div>
@@ -76,15 +100,38 @@
                         <div class="modal fade" id="itemProd<%# Container.ItemIndex %>" tabindex="-1" aria-labelledby="itemProdModal<%# Container.ItemIndex %>" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-scrollable" role="document">
                                 <div class="modal-content">
+
+                                    <%-- header --%>
                                     <div class="modal-header">
                                         <h5 class="modal-title">Order Details</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+
+                                    <%-- content --%>
                                     <div class="modal-body mx-3 my-3">
                                         <h6 class="mb-3">Order ID: <%# Eval("orderID") %></h6>
                                         <div>
                                             <%# GetOrderItems(Container.DataItem) %>
                                         </div>
+                                    </div>
+
+
+                                    <%-- RETURN ITEM --%>
+
+
+                                    <asp:Panel ID="ReturnItemContainer" runat="server">
+                                        <div>
+                                            Upload Proof of Return:
+                                        </div>
+                                        <div>
+                                            <asp:FileUpload ID="receipt" runat="server" accept=".png,.jpg,.jpeg" />
+                                        </div>
+                                    </asp:Panel>
+
+
+                                    <%-- button --%>
+                                    <div>
+                                        <asp:Button ID="receivedBtn" runat="server" Text="Return Item" CommandArgument='<%# Eval("orderID") %>' OnClick="receivedBtn_Click" />
                                     </div>
                                 </div>
                             </div>

@@ -98,7 +98,7 @@ CREATE TABLE OrderForm (
     orderTime TIME NOT NULL,
     returnDate DATE NOT NULL,
     FOREIGN KEY (username) REFERENCES Users(username),
-    CONSTRAINT CHK_orderStatus CHECK (orderStatus IN ('Order Placed', 'Preparing to Ship', 'In Transit', 'Delivered', 'To Return'))
+    CONSTRAINT CHK_orderStatus CHECK (orderStatus IN ('Order Placed', 'Preparing to Ship', 'In Transit', 'Delivered', 'To Return', 'Completed'))
 );
 
 -- OrderItems Table

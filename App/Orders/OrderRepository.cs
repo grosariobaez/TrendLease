@@ -217,7 +217,7 @@ namespace TrendLease_WebApp.App.Orders
                 }
                 else if (orderStatus == "Completed")
                 {
-                    query += " AND orderStatus = 'To Return'";
+                    query += " AND orderStatus = 'Completed'";
                 }
 
                 command.CommandText = query;
@@ -345,6 +345,36 @@ namespace TrendLease_WebApp.App.Orders
                 return count == 0; 
             }
         }
+
+
+
+        public void StoreReceipt(string username, string orderID, byte[] imageData)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = connection.CreateCommand())
+            {
+                connection.Open();
+
+                // Insert receipt data into CompletedOrders table
+                command.CommandText = "INSERT INTO CompletedOrders (username, orderID, image_receipt) VALUES (@username, @orderID, @receipt)";
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@orderID", orderID);
+                command.Parameters.AddWithValue("@receipt", imageData);
+                command.ExecuteNonQuery();
+
+                
+                // Update orderStatus in OrderForm table
+                command.CommandText = "UPDATE OrderForm SET orderStatus = @status WHERE orderID = @orderID";
+
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@status", "Completed");
+                command.Parameters.AddWithValue("@orderID", orderID);
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+
 
     }
 }

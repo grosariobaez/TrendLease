@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,6 +13,9 @@ namespace TrendLease_WebApp
 {
     public partial class Profile : System.Web.UI.Page
     {
+
+        public Panel ReturnItemContainer;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string username = Request.QueryString["username"];
@@ -135,8 +139,63 @@ namespace TrendLease_WebApp
                     modalBody.InnerText = orderID;
                 }
             }
+
+
+            Button receivedBtn = (Button)e.Item.FindControl("receivedBtn");
+            ReturnItemContainer = (Panel)e.Item.FindControl("ReturnItemContainer");
+
+            string orderStatus = DataBinder.Eval(e.Item.DataItem, "orderStatus").ToString();
+
+            if (orderStatus == "To Return")
+            {
+                receivedBtn.Visible = true;
+                ReturnItemContainer.Visible = true;
+            }
+            else
+            {
+                receivedBtn.Visible = false;
+                ReturnItemContainer.Visible = false;
+            }
         }
 
+        protected void receivedBtn_Click(object sender, EventArgs e)
+        {
+            OrderRepository repository = new OrderRepository();
 
+            Button btn = (Button)sender;
+            string orderID = btn.CommandArgument;
+
+
+            RepeaterItem repeaterItem = (RepeaterItem)btn.NamingContainer;
+            FileUpload receipt = (FileUpload)repeaterItem.FindControl("receipt");
+
+            if (receipt.HasFile)
+            {
+                string fileName = receipt.FileName;
+                string fileExtension = Path.GetExtension(fileName).ToLower();
+
+                if (fileExtension == ".png" || fileExtension == ".jpg" || fileExtension == ".jpeg")
+                {
+                    byte[] fileBytes = receipt.FileBytes;
+
+                    repository.StoreReceipt(Request.QueryString["username"], orderID, fileBytes);
+
+                    Response.Redirect(Request.RawUrl);
+
+                    Response.Write($"<script>alert('Receipt uploaded for order ID: {orderID}');</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Only PNG, JPG, or JPEG files are allowed');</script>");
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Please select a file to upload');</script>");
+            }
+
+
+
+        }
     }
 }
