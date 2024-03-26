@@ -1,7 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Nav-1.Master.cs" Inherits="TrendLease_WebApp.Site1" %>
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
     <title></title>
@@ -14,11 +13,30 @@
     <%-- CSS --%>
     <link href="Styles/Elements.css" rel="stylesheet" type="text/css" />
 
+    <style>
+        /* Ensure the main content container fills the remaining space */
+        #content-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Minimum height to cover the entire viewport */
+        }
+
+        /* Main content area */
+        #MainContent {
+            flex-grow: 1; /* Allow the main content area to grow and occupy remaining space */
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: auto; /* Push the footer to the bottom */
+           
+        }
+    </style>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-
     <%-- Navbar --%>
     <nav class="navbar pt-3 pb-3">
         <div class="container d-flex justify-content-center align-items-center">
@@ -55,16 +73,15 @@
         </div>
     </nav>
 
-    <%-- Main Content --%>
+    <!-- Main Content -->
     <form id="form1" runat="server">
-        <div>
+        <div id="content-container">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </form>
 
-
-    <%-- Footer --%>
+    <!-- Footer -->
     <div class="footer">
         <div>
             <a href="#" class="navbar-brand">
@@ -75,6 +92,12 @@
             Copyright &copy; 2024
         </div>
     </div>
-
 </body>
 </html>
+
+
+
+
+
+
+
