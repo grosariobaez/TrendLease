@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -43,7 +44,7 @@ namespace TrendLease_WebApp
 
             if (!orderForms.Any())
             {
-                NoProduct.Visible = true; 
+                NoProduct.Visible = true;
             }
             else
             {
@@ -51,7 +52,7 @@ namespace TrendLease_WebApp
             }
         }
 
-       
+
 
         public void BindData()
         {
@@ -166,6 +167,9 @@ namespace TrendLease_WebApp
             string orderID = btn.CommandArgument;
 
 
+            // file upload
+            List<string> prodIDs = repository.GetProdIDsByOrderID(orderID);
+
             RepeaterItem repeaterItem = (RepeaterItem)btn.NamingContainer;
             FileUpload receipt = (FileUpload)repeaterItem.FindControl("receipt");
 
@@ -180,6 +184,11 @@ namespace TrendLease_WebApp
 
                     repository.StoreReceipt(Request.QueryString["username"], orderID, fileBytes);
 
+                    foreach (string prodID in prodIDs)
+                    {
+                        repository.SetProdAvail(prodID);
+                    }
+
                     Response.Redirect(Request.RawUrl);
 
                     Response.Write($"<script>alert('Receipt uploaded for order ID: {orderID}');</script>");
@@ -193,9 +202,24 @@ namespace TrendLease_WebApp
             {
                 Response.Write("<script>alert('Please select a file to upload');</script>");
             }
+        }
 
+        [WebMethod]
+        public static void SetSelectedRating(int rating, string orderID)
+        {
+            OrderRepository repository = new OrderRepository();
 
+            // List<string> prodIDs = repository.GetProdIDsByOrderID(orderID);
+
+            HttpContext.Current.Session["SelectedRating"] = rating;
+
+           
+
+            repository.AddProductRating("00001", rating);
 
         }
+
+
+
     }
 }

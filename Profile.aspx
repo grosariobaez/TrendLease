@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        /* Optional: CSS for custom styling */
         .modal-header {
             background-color: #2d3c4d;
             color: #ffffff;
@@ -20,11 +19,141 @@
             color: #2D3C4D;
         }
 
-        .drpdwn {
+        .receiveBtn {
+            width: 90%;
+            background-color: #2D3C4D;
+            border: none;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
         }
+
+        .file-upload {
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        .custom-file-upload {
+            width: 100%;
+            display: inline-block;
+            padding: 10px;
+            background-color: white;
+            color: #2D3C4D;
+            border: 2px solid #2D3C4D;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .custom-file-upload:hover {
+                background-color: #2D3C4D;
+                border-color: #2D3C4D;
+                color: white;
+            }
+
+
+
+        .yellow-star {
+            color: yellow;
+        }
+
+
+        .rating {
+            font-size: 24px;
+            direction: rtl;
+        }
+
+        .star {
+            cursor: pointer;
+            color: gray;
+        }
+
+            .star:hover,
+            .star:hover ~ .star {
+                color: gold;
+            }
+
+            .star.active,
+            .star.active ~ .star {
+                color: gold;
+            }
     </style>
+    
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const stars = document.querySelectorAll(".star");
+
+        stars.forEach(function (star) {
+            star.addEventListener("click", function () {
+                const rating = parseInt(star.getAttribute("data-rating"));
+                resetRating();
+                star.classList.add("active");
+                console.log("Selected rating:", rating);
+            });
+        });
+
+        function resetRating() {
+            stars.forEach(function (star) {
+                star.classList.remove("active");
+            });
+        }
+    });
+
+    function validateRating() {
+        var selectedRating = 0;
+        var stars = document.querySelectorAll(".rating .star");
+
+        for (var i = 0; i < stars.length; i++) {
+            if (stars[i].classList.contains("active")) {
+                selectedRating = stars.length - i;
+                break;
+            }
+        }
+
+        if (selectedRating === 0) {
+            alert("Please select a rating.");
+            return false;
+        }
+
+        // Call the server-side method to save the rating
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    // Optionally handle the response
+                    console.log("Rating saved successfully.");
+                } else {
+                    console.error("Failed to save rating:", xhr.status);
+                }
+            }
+        };
+
+        xhr.open("POST", "Profile.aspx/SetSelectedRating", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        // Pass rating and orderID if needed
+        xhr.send(JSON.stringify({ rating: selectedRating }));
+
+        return true;
+    }
+
+
+
+</script>
+
+
+
+    
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+
     <div class="container mt-5">
         <h1 class="mb-5 mt-3">My Orders</h1>
         <div class="row justify-content-center">
@@ -109,29 +238,48 @@
 
                                     <%-- content --%>
                                     <div class="modal-body mx-3 my-3">
-                                        <h6 class="mb-3">Order ID: <%# Eval("orderID") %></h6>
+                                     <h6 id="orderID" class="mb-3">Order ID: <%# Eval("orderID") %></h6>
                                         <div>
                                             <%# GetOrderItems(Container.DataItem) %>
                                         </div>
                                     </div>
 
 
+
+
                                     <%-- RETURN ITEM --%>
+                                    <asp:Panel ID="ReturnItemContainer" runat="server" class="container p-4">
 
+                                        <%-- rating --%>
+                                        <h6>Review:</h6>
+                                        <div class="rating mb-3">
+                                            <span class="star" data-rating="5">&#9733;</span>
+                                            <span class="star" data-rating="4">&#9733;</span>
+                                            <span class="star" data-rating="3">&#9733;</span>
+                                            <span class="star" data-rating="2">&#9733;</span>
+                                            <span class="star" data-rating="1">&#9733;</span>
+                                        </div>
 
-                                    <asp:Panel ID="ReturnItemContainer" runat="server">
+                                        <%-- proof of return --%>
                                         <div>
-                                            Upload Proof of Return:
+                                            <h6>
+                                                Upload Proof of Return:
+                                            </h6>
+                                            <div class="file-upload">
+                                                <asp:FileUpload ID="receipt" class="custom-file-upload" runat="server" accept=".png,.jpg,.jpeg" />
+                                            </div>
                                         </div>
-                                        <div>
-                                            <asp:FileUpload ID="receipt" runat="server" accept=".png,.jpg,.jpeg" />
-                                        </div>
+
+                                       
                                     </asp:Panel>
+
+
+
 
 
                                     <%-- button --%>
                                     <div>
-                                        <asp:Button ID="receivedBtn" runat="server" Text="Return Item" CommandArgument='<%# Eval("orderID") %>' OnClick="receivedBtn_Click" />
+                                        <asp:Button class="container m-4 receiveBtn" ID="receivedBtn" runat="server" Text="Return Item" CommandArgument='<%# Eval("orderID") %>' OnClick="receivedBtn_Click" OnClientClick="return validateRating();" />
                                     </div>
                                 </div>
                             </div>

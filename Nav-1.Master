@@ -10,25 +10,26 @@
     <script src="Scripts/bootstrap.bundle.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 
+    <%-- FontAwesome --%>
+    <link href="Content/font-awesome.css" rel="stylesheet" />
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+
     <%-- CSS --%>
     <link href="Styles/Elements.css" rel="stylesheet" type="text/css" />
 
     <style>
-        /* Ensure the main content container fills the remaining space */
         #content-container {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Minimum height to cover the entire viewport */
+            min-height: 100vh;
         }
 
-        /* Main content area */
         #MainContent {
-            flex-grow: 1; /* Allow the main content area to grow and occupy remaining space */
+            flex-grow: 1; 
         }
 
-        /* Footer */
         .footer {
-            margin-top: auto; /* Push the footer to the bottom */
+            margin-top: auto;
            
         }
     </style>

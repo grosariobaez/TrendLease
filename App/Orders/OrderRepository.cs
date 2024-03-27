@@ -92,6 +92,8 @@ namespace TrendLease_WebApp.App.Orders
         }
 
 
+
+
         public void StoreOrderItem(string transactionID, string username)
         {
             using (var connection = new SqlConnection(connectionString))
@@ -99,11 +101,10 @@ namespace TrendLease_WebApp.App.Orders
             {
                 connection.Open();
 
-                // retrieve cart items
                 command.CommandText = @"SELECT username, CartItems.prodID, Products.prodPrice
-                                        FROM CartItems
-                                        JOIN Products ON CartItems.prodID = Products.prodID
-                                        WHERE username = @username";
+                        FROM CartItems
+                        JOIN Products ON CartItems.prodID = Products.prodID
+                        WHERE username = @username";
                 command.Parameters.AddWithValue("@username", username);
 
                 using (var reader = command.ExecuteReader())
@@ -122,33 +123,75 @@ namespace TrendLease_WebApp.App.Orders
 
                     reader.Close();
 
-
-                    // delete the data from the CartItems table
-                    using (var deleteCommand = connection.CreateCommand())
-                    {
-                        deleteCommand.CommandText = @"DELETE FROM CartItems WHERE username = @username";
-                        deleteCommand.Parameters.AddWithValue("@username", username);
-                        deleteCommand.ExecuteNonQuery();
-                    }
-
-
-                    // store ordered items
                     foreach (var item in orderItemsList)
                     {
+                        using (var updateCommand = connection.CreateCommand())
+                        {
+                            updateCommand.CommandText = @"UPDATE Products 
+                                          SET prodAvail = 'false' 
+                                          WHERE prodID = @prodID";
+                            updateCommand.Parameters.AddWithValue("@prodID", item.prodID);
+                            updateCommand.ExecuteNonQuery();
+                        }
+
                         using (var insertCommand = connection.CreateCommand())
                         {
                             insertCommand.CommandText = @"INSERT INTO OrderItems (orderID, prodID, price)
-                                                  VALUES (@orderID, @prodID, @price)";
+                                          VALUES (@orderID, @prodID, @price)";
                             insertCommand.Parameters.AddWithValue("@orderID", item.orderID);
                             insertCommand.Parameters.AddWithValue("@prodID", item.prodID);
                             insertCommand.Parameters.AddWithValue("@price", item.prodPrice);
 
                             insertCommand.ExecuteNonQuery();
                         }
+
+                        // Delete the item from the wishlist
+                        using (var deleteWishlistCommand = connection.CreateCommand())
+                        {
+                            deleteWishlistCommand.CommandText = @"DELETE FROM WishListItems WHERE username = @username AND prodID = @prodID";
+                            deleteWishlistCommand.Parameters.AddWithValue("@username", username);
+                            deleteWishlistCommand.Parameters.AddWithValue("@prodID", item.prodID);
+                            deleteWishlistCommand.ExecuteNonQuery();
+                        }
                     }
+                }
+
+                // Clear the cart after items have been ordered
+                using (var deleteCommand = connection.CreateCommand())
+                {
+                    deleteCommand.CommandText = @"DELETE FROM CartItems WHERE username = @username";
+                    deleteCommand.Parameters.AddWithValue("@username", username);
+                    deleteCommand.ExecuteNonQuery();
                 }
             }
         }
+
+        public List<string> GetProdIDsByOrderID(string orderID)
+        {
+            List<string> prodIDs = new List<string>();
+
+            using (var connection = new SqlConnection(connectionString))
+            using (var command = connection.CreateCommand())
+            {
+                connection.Open();
+
+                command.CommandText = "SELECT prodID FROM OrderItems WHERE orderID = @orderID";
+                command.Parameters.AddWithValue("@orderID", orderID);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        prodIDs.Add(reader["prodID"].ToString());
+                    }
+                }
+            }
+
+            return prodIDs;
+        }
+
+
+
 
 
         // get order forms from a specific user
@@ -309,7 +352,7 @@ namespace TrendLease_WebApp.App.Orders
 
                         TimeSpan orderTime = reader.GetTimeSpan(reader.GetOrdinal("orderTime"));
 
-                        OrderForm form = new OrderForm (
+                        OrderForm form = new OrderForm(
                             reader["orderID"].ToString(),
                             username,
                             reader["orderStatus"].ToString(),
@@ -340,9 +383,9 @@ namespace TrendLease_WebApp.App.Orders
                 command.CommandText = @"SELECT COUNT(*) FROM CartItems WHERE username = @username";
                 command.Parameters.AddWithValue("@username", username);
 
-                int count = (int)command.ExecuteScalar(); 
+                int count = (int)command.ExecuteScalar();
 
-                return count == 0; 
+                return count == 0;
             }
         }
 
@@ -351,28 +394,62 @@ namespace TrendLease_WebApp.App.Orders
         public void StoreReceipt(string username, string orderID, byte[] imageData)
         {
             using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    // Insert receipt data into CompletedOrders table
+                    command.CommandText = "INSERT INTO CompletedOrders (username, orderID, image_receipt) VALUES (@username, @orderID, @receipt)";
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@orderID", orderID);
+                    command.Parameters.AddWithValue("@receipt", imageData);
+                    command.ExecuteNonQuery();
+                }
+
+                using (var command = connection.CreateCommand())
+                {
+                    // Update orderStatus in OrderForm table
+                    command.CommandText = "UPDATE OrderForm SET orderStatus = @status WHERE orderID = @orderID";
+                    command.Parameters.AddWithValue("@status", "Completed");
+                    command.Parameters.AddWithValue("@orderID", orderID);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void SetProdAvail(string prodID)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    // Update prodAvail in Products table
+                    command.CommandText = "UPDATE Products SET prodAvail = 'true' WHERE prodID = @prodID";
+                    command.Parameters.AddWithValue("@prodID", prodID);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+        }
+
+
+        public void AddProductRating(string prodID, int userRating)
+        {
+            using (var connection = new SqlConnection(connectionString))
             using (var command = connection.CreateCommand())
             {
                 connection.Open();
 
-                // Insert receipt data into CompletedOrders table
-                command.CommandText = "INSERT INTO CompletedOrders (username, orderID, image_receipt) VALUES (@username, @orderID, @receipt)";
-                command.Parameters.AddWithValue("@username", username);
-                command.Parameters.AddWithValue("@orderID", orderID);
-                command.Parameters.AddWithValue("@receipt", imageData);
-                command.ExecuteNonQuery();
+                command.CommandText = @"INSERT INTO ProductRating
+                                        VALUES(@prodID, @userRating)";
+                command.Parameters.AddWithValue("prodID", prodID);
+                command.Parameters.AddWithValue("userRating", userRating);
 
-                
-                // Update orderStatus in OrderForm table
-                command.CommandText = "UPDATE OrderForm SET orderStatus = @status WHERE orderID = @orderID";
-
-                command.Parameters.Clear();
-                command.Parameters.AddWithValue("@status", "Completed");
-                command.Parameters.AddWithValue("@orderID", orderID);
                 command.ExecuteNonQuery();
             }
         }
-
 
 
 

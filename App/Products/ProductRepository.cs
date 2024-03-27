@@ -24,6 +24,7 @@ namespace TrendLease_WebApp.App.Products
                 command.CommandText = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, COALESCE(AVG(CASE WHEN ProductRating.userRating > 0 THEN ProductRating.userRating END), 0) AS userRating, SUM(CASE WHEN ProductRating.userRating > 0 THEN 1 ELSE 0 END) AS ProductReviews
                                         FROM Products 
                                         LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
+                                        WHERE Products.prodAvail = 'true'
                                         GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
 
                 using (var reader = command.ExecuteReader())
@@ -65,6 +66,7 @@ namespace TrendLease_WebApp.App.Products
                     query = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, COALESCE(AVG(CASE WHEN ProductRating.userRating > 0 THEN ProductRating.userRating END), 0) AS userRating, SUM(CASE WHEN ProductRating.userRating > 0 THEN 1 ELSE 0 END) AS ProductReviews
                             FROM Products 
                             LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
+                            WHERE Products.prodAvail = 'true'
                             GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
                 }
                 else
@@ -72,7 +74,7 @@ namespace TrendLease_WebApp.App.Products
                     query = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, COALESCE(AVG(CASE WHEN ProductRating.userRating > 0 THEN ProductRating.userRating END), 0) AS userRating, SUM(CASE WHEN ProductRating.userRating > 0 THEN 1 ELSE 0 END) AS ProductReviews
                             FROM Products 
                             LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
-                            WHERE prodType = @category
+                            WHERE prodType = @category AND Products.prodAvail = 'true'
                             GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
                     command.Parameters.AddWithValue("@category", category);
                 }
@@ -91,9 +93,9 @@ namespace TrendLease_WebApp.App.Products
                             prodID = reader["prodID"].ToString(),
                             prodDesc = reader["prodDesc"].ToString(),
                             prodType = reader["prodType"].ToString(),
-                            prodPrice = Convert.ToSingle(reader["prodPrice"]), 
+                            prodPrice = Convert.ToSingle(reader["prodPrice"]),
                             prodAvail = (bool)reader["prodAvail"],
-                            prodRating = Convert.ToSingle(reader["userRating"]), 
+                            prodRating = Convert.ToSingle(reader["userRating"]),
                             reviewCount = Convert.ToInt32(reader["ProductReviews"])
                         });
                     }
@@ -102,7 +104,6 @@ namespace TrendLease_WebApp.App.Products
                 }
             }
         }
-
 
 
         // get specific item for product view
@@ -116,7 +117,7 @@ namespace TrendLease_WebApp.App.Products
                 command.CommandText = @"SELECT Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail, COALESCE(AVG(CASE WHEN ProductRating.userRating > 0 THEN ProductRating.userRating END), 0) AS userRating, SUM(CASE WHEN ProductRating.userRating > 0 THEN 1 ELSE 0 END) AS ProductReviews
                             FROM Products 
                             LEFT JOIN ProductRating ON Products.prodID = ProductRating.prodID
-                            WHERE Products.prodID = @prodID
+                            WHERE Products.prodID = @prodID AND Products.prodAvail = 'true'
                             GROUP BY Products.prodID, prodName, prodDesc, prodType, prodPrice, prodAvail;";
 
 
@@ -147,12 +148,5 @@ namespace TrendLease_WebApp.App.Products
 
             }
         }
-
-
-
-
-
-
-
     }
 }
