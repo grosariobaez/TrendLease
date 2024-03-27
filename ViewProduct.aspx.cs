@@ -81,7 +81,12 @@ namespace TrendLease_WebApp
         {
             string username = Request.QueryString["username"];
             string prodID = Request.QueryString["prodID"];
+            Button btn = (Button)sender;
+            RepeaterItem item = (RepeaterItem)btn.NamingContainer;
 
+            // Find the productName label within the current repeater item
+            Label productName = (Label)item.FindControl("productName");
+            string prodName = productName.Text;
 
             CartRepository repository = new CartRepository();
 
@@ -91,11 +96,11 @@ namespace TrendLease_WebApp
             if (!itemExistsInCart)
             {
                 repository.InsertItemCart(username, prodID);
-                Response.Write($"<script>alert('Success! Item is added to cart.');</script>");
+                Response.Write($"<script>alert('Item {prodName} added to wishlist.');</script>");
             }
             else
             {
-                Response.Write($"<script>alert('Item is already in the cart.');</script>");
+                Response.Write($"<script>alert('Item {prodName} is already in your wishlist.');</script>");
             }
         }
     }

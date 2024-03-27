@@ -26,7 +26,7 @@ namespace TrendLease_WebApp
 
                 if (!DoesUserExists(newUser))
                 {
-                    Response.Write($"<script>alert('Successful Registration');</script>");
+                    Response.Write($"<script>alert('User Registered Successfully.');</script>");
 
                     var userRepo = new UserRepository();
 
@@ -51,7 +51,7 @@ namespace TrendLease_WebApp
                 }
                 else
                 {
-                    Response.Write($"<script>alert('User {newUser} already exists');</script>");
+                    Response.Write($"<script>alert('User {newUser} already exists!');</script>");
 
 
                     ClearTxtboxValues();

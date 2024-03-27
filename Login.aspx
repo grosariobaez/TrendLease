@@ -116,7 +116,7 @@
 
             <div class="col-md-6">
                 <h1 class="main-logo">TREND<span class ="main-span">LEASE</span></h1>
-                <h1 class="tagline">Join the Trend</h1>
+                <h1 class="tagline">Style on Lease, Sustainability at Heart with TrendLease</h1>
             </div>
 
             <div class="col-md-6 card box--container">

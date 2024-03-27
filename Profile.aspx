@@ -128,7 +128,7 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
-                    
+
                     console.log("Rating saved successfully.");
                 } else {
                     console.error("Failed to save rating:", xhr.status);

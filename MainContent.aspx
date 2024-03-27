@@ -29,16 +29,11 @@
 
             .custom-radio input[type="radio"]:checked + label,
             .custom-radio input[type="radio"]:active + label {
-                /*background-color: #b7d9ff;*/
                 border-color: #6a98cc;
                 background-color: #6a98cc;
                 color: white;
                 font-weight: 600;
             }
-
-        .selections {
-            /*margin-right: 10%;*/
-        }
 
         .rating-container {
             font-size: 14px;
