@@ -169,9 +169,28 @@
                     </div>
 
                     <div class="mb-3">
-                        <asp:TextBox ID="cardNumber" class="form-control" placeholder="Enter Card Number" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="cardNumber" class="form-control" placeholder="Enter Card Number (XXXX - XXXX - XXXX - XXXX)" runat="server" onkeyup="addHyphens(this)"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Card Number is required." ControlToValidate="cardNumber" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                    
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please follow the specified format (XXXX - XXXX - XXXX - XXXX)." ControlToValidate="cardNumber" Display="Dynamic" ForeColor="Red" ValidationExpression="^\d{4}\s*-\s*\d{4}\s*-\s*\d{4}\s*-\s*\d{4}$"></asp:RegularExpressionValidator>
+
                     </div>
+                    <script>
+                        function addHyphens(element) {
+                           
+                            var cleanedValue = element.value.replace(/[^0-9]/g, '');
+
+                            var formattedValue = '';
+                            for (var i = 0; i < cleanedValue.length; i++) {
+                                if (i > 0 && i % 4 === 0) {
+                                    formattedValue += ' - ';
+                                }
+                                formattedValue += cleanedValue[i];
+                            }
+
+                            element.value = formattedValue;
+                        }
+                    </script>
 
 
                     <asp:Button ID="payBtn" class="btn-sm mt-3 paymentBtn" runat="server" Text="Process Payment" OnClick="payBtn_Click" />
