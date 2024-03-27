@@ -217,6 +217,7 @@ namespace TrendLease_WebApp
                 repository.AddProductRating(prodID, rating);
             }
 
+            // optional, storing the selected rating in the session
             HttpContext.Current.Session["SelectedRating"] = rating;
         }
 
