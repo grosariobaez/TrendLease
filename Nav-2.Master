@@ -22,7 +22,7 @@
     <nav class="navbar pt-3 pb-3">
         <div class="container d-flex justify-content-center align-items-center">
             <!-- Logo -->
-            <a href="Home.aspx" class="navbar-brand">
+            <a href="Default.aspx" class="navbar-brand">
                 <p class="logo mb-0">TREND<span>LEASE</span></p>
             </a>
             <div class="flex-grow-1"></div>

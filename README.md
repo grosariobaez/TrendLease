@@ -95,23 +95,60 @@ This project was done by Vince Joseph Arbutante, Louise Angela Caballero, George
 > [!IMPORTANT]
 > <h4>🚀 User Registration and Login Functionality</h4>
 > Users can register and create accounts to access the website's features. 
-> <br /> <br />
+
+<br /> <br />
+![Screenshot 2024-03-27 104204](https://github.com/georgefish-git/TrendLease-WebApp/assets/164111760/1cec2a32-250a-4b40-887c-c49050824f0c)
+![image](https://github.com/georgefish-git/TrendLease-WebApp/assets/164111760/e95ed99d-93cc-4ff2-a4b5-41c10d0e19a3)
+<br /> <br />
+
+> [!IMPORTANT]
 > <h4>🚀 Browsing and Category Options</h4>
 > Users can browse clothing items by type or category to easily find items that match their preferences.
-> <br /> <br />
+
+<br /> <br />
+![Screenshot 2024-03-27 104709](https://github.com/georgefish-git/TrendLease-WebApp/assets/164111760/12b14da2-72a9-4dad-9ff2-6dcfe8968d15)
+![Screenshot 2024-03-27 104751](https://github.com/georgefish-git/TrendLease-WebApp/assets/164111760/b0fabe1a-5fdb-4283-8439-ac8053bbc6ec)
+<br /> <br />
+
+> [!IMPORTANT]
 > <h4>🚀 Detailed Product Descriptions</h4> 
 > Users can view comprehensive product descriptions, including images, sizes, prices, and rental durations, to make informed decisions about which items to rent.
-> <br /> <br />
+
+<br /> <br />
+![Screenshot 2024-03-27 105223](https://github.com/georgefish-git/TrendLease-WebApp/assets/164111760/59e55a77-fe8c-4942-bb0c-9671d4d2b2e4)
+<br /> <br />
+
+> [!IMPORTANT]
 > <h4>🚀 Add to Cart</h4> 
 > Users can add desired items to their cart for rental.
-> <br /> <br />
+
+<br /> <br />
+![Screenshot 2024-03-27 104914](https://github.com/georgefish-git/TrendLease-WebApp/assets/164111760/ca17a1d9-1645-4d41-b94d-b93cec36169b)
+<br /> <br />
+
+> [!IMPORTANT]
 > <h4>🚀 Secure Checkout Payment Processing</h4>
 > The platform ensures secure checkout and payment processing with various payment methods, allowing users to complete transactions safely.
-> <br /> <br />
+
+<br /> <br />
+![Screenshot 2024-03-27 104914](https://github.com/georgefish-git/TrendLease-WebApp/assets/164111760/10c15f1d-aec7-4d96-85fe-dab705340297)
+![image](https://github.com/georgefish-git/TrendLease-WebApp/assets/164111760/2d92c52e-7ca4-4671-8807-215d14849e0e)
+<br /> <br />
+
+> [!IMPORTANT]
 > <h4>🚀 Order Tracking</h4> 
 > Users can track the status of their rental orders via their account dashboard, enabling them to stay updated on their transactions.
-> <br /> <br />
+
+<br /> <br />
+![Screenshot 2024-03-27 105116](https://github.com/georgefish-git/TrendLease-WebApp/assets/164111760/f596f304-62cc-4052-ac8e-b61fff25e9bb)
+![Screenshot 2024-03-27 105454](https://github.com/georgefish-git/TrendLease-WebApp/assets/164111760/cb58d407-f34b-4ef2-9aa0-319ae31f3a8d)
+<br /> <br />
+
+> [!IMPORTANT]
 > <h4>🚀 Rating System</h4>
 > Users can provide ratings on rented items, facilitating communication and enhancing the user experience.
->
+
+<br /> <br />
+![Screenshot 2024-03-27 105536](https://github.com/georgefish-git/TrendLease-WebApp/assets/164111760/96ad0037-740e-4eb8-abb7-e9ce2eae427f)
+<br /> <br />
 
