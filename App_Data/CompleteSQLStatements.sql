@@ -8,6 +8,8 @@ DROP TABLE IF EXISTS Products;
 DROP TABLE IF EXISTS InfoUsers;
 DROP TABLE IF EXISTS AuthUsers;
 DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS CompletedOrders;
+
 
 -- Users Table
 CREATE TABLE Users (
@@ -134,3 +136,11 @@ VALUES
 ('00025'), ('00026'), ('00027'), ('00028'), ('00029'), ('00030');
 
 -- INSERT INTO ProductRating (prodID) VALUES ('00001', '00002', '00003', '00004','00005','00006','00007','00008','00009','00010', '00011','00012','00013','00014', '00015', '00016', '00017', '00018', '00019', '00020', '00021','00022', '00023', '00024', '00025', '00026', '00027','00028', '00029', '00030');
+
+
+-- CompletedUsers Table
+CREATE TABLE CompletedOrders (
+	username VARCHAR (50) NOT NULL,
+	orderID VARCHAR(50) NOT NULL,
+	image_receipt VARBINARY(MAX)  
+);
