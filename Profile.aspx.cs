@@ -182,6 +182,7 @@ namespace TrendLease_WebApp
                 {
                     byte[] fileBytes = receipt.FileBytes;
 
+                    // Store the receipt
                     repository.StoreReceipt(Request.QueryString["username"], orderID, fileBytes);
 
                     foreach (string prodID in prodIDs)
@@ -191,15 +192,18 @@ namespace TrendLease_WebApp
 
                     Response.Redirect(Request.RawUrl);
 
+                    // Show success message
                     Response.Write($"<script>alert('Receipt uploaded for order ID: {orderID}');</script>");
                 }
                 else
                 {
+                    // Show error message if file format is not supported
                     Response.Write("<script>alert('Only PNG, JPG, or JPEG files are allowed');</script>");
                 }
             }
             else
             {
+                // Show error message if no file is selected
                 Response.Write("<script>alert('Please select a file to upload');</script>");
             }
         }
