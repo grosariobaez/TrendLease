@@ -85,9 +85,9 @@
     </style>
     
 <script>
+
     document.addEventListener("DOMContentLoaded", function () {
         const stars = document.querySelectorAll(".star");
-
         stars.forEach(function (star) {
             star.addEventListener("click", function () {
                 const rating = parseInt(star.getAttribute("data-rating"));
@@ -96,7 +96,6 @@
                 console.log("Selected rating:", rating);
             });
         });
-
         function resetRating() {
             stars.forEach(function (star) {
                 star.classList.remove("active");
@@ -120,12 +119,16 @@
             return false;
         }
 
-        // Call the server-side method to save the rating
+        // Get the order ID from the modal
+        var orderIDElement = document.getElementById("orderID");
+        var orderID = orderIDElement.textContent.trim().split(": ")[1]; // get "Order ID: XXXX" from modal
+
+        // save the rating
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
-                    // Optionally handle the response
+                    
                     console.log("Rating saved successfully.");
                 } else {
                     console.error("Failed to save rating:", xhr.status);
@@ -136,14 +139,11 @@
         xhr.open("POST", "Profile.aspx/SetSelectedRating", true);
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-        // Pass rating and orderID if needed
-        xhr.send(JSON.stringify({ rating: selectedRating }));
+        // pass the rating and orderID
+        xhr.send(JSON.stringify({ rating: selectedRating, orderID: orderID }));
 
         return true;
     }
-
-
-
 </script>
 
 

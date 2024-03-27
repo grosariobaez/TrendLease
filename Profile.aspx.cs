@@ -213,15 +213,19 @@ namespace TrendLease_WebApp
         {
             OrderRepository repository = new OrderRepository();
 
-            // List<string> prodIDs = repository.GetProdIDsByOrderID(orderID);
+            // get all list of prodIDs
+            List<string> prodIDs = repository.GetProdIDsByOrderID(orderID);
 
+            // loop for each product ID and add the user rating
+            foreach (string prodID in prodIDs)
+            {
+                repository.AddProductRating(prodID, rating);
+            }
+
+            // optional, storing the selected rating in the session
             HttpContext.Current.Session["SelectedRating"] = rating;
-
-           
-
-            repository.AddProductRating("00001", rating);
-
         }
+
 
 
 
