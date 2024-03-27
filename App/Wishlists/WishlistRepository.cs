@@ -94,11 +94,6 @@ namespace TrendLease_WebApp.App.Wishlists
                             prodID = reader["prodID"].ToString(),
                             prodPrice = Convert.ToSingle(reader["prodPrice"]),
                             prodType = reader["prodType"].ToString(),
-                            //username = reader["username"].ToString(),   
-                            //prodDesc = reader["prodDesc"].ToString(),
-                            //prodAvail = (bool)reader["prodAvail"],
-                            //prodRating = Convert.ToSingle(reader["userRating"]),
-                            //reviewCount = Convert.ToInt32(reader["ProductReviews"])
                         });
                     }
 
@@ -126,9 +121,6 @@ namespace TrendLease_WebApp.App.Wishlists
                 command.ExecuteNonQuery();
             }
         }
-
-
-
 
 
 

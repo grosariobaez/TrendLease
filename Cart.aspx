@@ -5,10 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <style>
-        .right-column-container {
-            /*background-color: #F5F5F5;*/
-        }
-
         .horizontal-line {
             border-top: 1px solid #000;
             margin: 10px 0;
@@ -39,7 +35,7 @@
         <div class="row">
             <!-- Left Column (Cart Items) -->
             <div class="col-md-6">
-                <div id="NoProduct" runat="server">
+                <div id="NoProduct" runat="server" class="mb-3">
                     <div class="card text-center">
                         <div class="card-body">
                             <p class="card-text">You have no items in your cart.</p>

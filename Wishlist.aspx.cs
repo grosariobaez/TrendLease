@@ -38,7 +38,6 @@ namespace TrendLease_WebApp
             Button btn = (Button)sender;
             RepeaterItem item = (RepeaterItem)btn.NamingContainer;
 
-            // Find the productName label within the current repeater item
             Label productName = (Label)item.FindControl("productName");
             string prodName = productName.Text;
             string prodID = btn.CommandArgument.ToString();
@@ -70,17 +69,10 @@ namespace TrendLease_WebApp
 
             WishlistRepository repository = new WishlistRepository();
 
-
-            // validation
-
             // delete from wishlist
             repository.DeleteFromWishlist(username, prodID);
 
             Response.Redirect(Request.RawUrl);
-
-
-
-
         }
     }
 }

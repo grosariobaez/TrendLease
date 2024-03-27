@@ -121,7 +121,7 @@
 
         // Get the order ID from the modal
         var orderIDElement = document.getElementById("orderID");
-        var orderID = orderIDElement.textContent.trim().split(": ")[1]; // get "Order ID: XXXX" from modal
+        var orderID = orderIDElement.textContent.trim().split(": ")[1]; 
 
         // save the rating
         var xhr = new XMLHttpRequest();

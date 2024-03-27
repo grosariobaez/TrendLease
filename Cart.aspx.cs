@@ -52,8 +52,7 @@ namespace TrendLease_WebApp
 
         protected void deleteFromCart_Click(object sender, EventArgs e)
         {
-            // Temporarily disable validation
-            Page.Validate("DeleteFromCartValidationGroup"); // Replace "DeleteFromCartValidationGroup" with the ID of your validation group
+            Page.Validate("DeleteFromCartValidationGroup"); 
             if (Page.IsValid)
             {
                 Button button = (Button)sender;

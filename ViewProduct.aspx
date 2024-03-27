@@ -69,6 +69,55 @@
         .prod-rating-stars {
             font-weight: 600;
         }
+
+        .container--image {
+            margin-right: 10%;
+        }
+
+        .container--details {
+            margin-left: 10%;
+        }
+
+         /* MEDIA QUERIES */
+
+        @media (max-width: 1200px) {
+            .container--main {
+            margin-left: 2rem;
+            margin-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container--image {
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        .container--details {
+            width: 100%;
+            margin: 0; 
+        }
+    }   
+
+
+    @media (max-width: 780px) {
+        .prod-title {
+            font-size: 40px;
+        }
+        .prod-price {
+            font-size: 20px;
+        }
+        .prod-desc {
+            font-size: 14px;
+        }
+        .btnDesign {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+    }
+
+
     </style>
 
     <div>
@@ -87,14 +136,14 @@
                             Back
                         </div>
                     </a>
-                    <div class="row m-2">
-                        <div class="col-md-6">
+                    <div class="row m-2 container--main">
+                        <div class="col-md-4 container--image">
                             <div>
                                 <img src="Image/Products/<%# Eval("prodID") %>.png" />
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-5 container--details">
                             <div>
 
                                 <div class="prod-title">

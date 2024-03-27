@@ -55,7 +55,6 @@ namespace TrendLease_WebApp
             Button btn = (Button)sender;
             RepeaterItem item = (RepeaterItem)btn.NamingContainer;
 
-            // Find the productName label within the current repeater item
             Label productName = (Label)item.FindControl("productName");
             string prodName = productName.Text;
 
@@ -84,7 +83,6 @@ namespace TrendLease_WebApp
             Button btn = (Button)sender;
             RepeaterItem item = (RepeaterItem)btn.NamingContainer;
 
-            // Find the productName label within the current repeater item
             Label productName = (Label)item.FindControl("productName");
             string prodName = productName.Text;
 

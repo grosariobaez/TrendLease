@@ -13,27 +13,27 @@
             margin: 0;
         }
 
-            .custom-radio:hover {
-                background-color: #b7d9ff;
-            }
+        .custom-radio:hover {
+            background-color: #b7d9ff;
+        }
 
-            .custom-radio input[type="radio"] {
-                display: none;
-            }
+        .custom-radio input[type="radio"] {
+            display: none;
+        }
 
-            .custom-radio label {
-                padding: 8px 36px;
-                border-radius: 16px;
-            }
+        .custom-radio label {
+            padding: 8px 36px;
+            border-radius: 16px;
+        }
 
 
-            .custom-radio input[type="radio"]:checked + label,
-            .custom-radio input[type="radio"]:active + label {
-                border-color: #6a98cc;
-                background-color: #6a98cc;
-                color: white;
-                font-weight: 600;
-            }
+        .custom-radio input[type="radio"]:checked + label,
+        .custom-radio input[type="radio"]:active + label {
+            border-color: #6a98cc;
+            background-color: #6a98cc;
+            color: white;
+            font-weight: 600;
+        }
 
         .rating-container {
             font-size: 14px;
@@ -66,11 +66,11 @@
             transition: all 0.3s ease;
         }
 
-            .viewProdBtn:hover {
-                background-color: #6a98cc;
-                color: white;
-                text-decoration: none;
-            }
+        .viewProdBtn:hover {
+            background-color: #6a98cc;
+            color: white;
+            text-decoration: none;
+        }
 
         .noprod {
             margin-bottom: 28%;
@@ -84,11 +84,9 @@
             outline: none;
         }
 
-            .wish-btn:hover {
-                color: red;
-            }
-
-
+        .wish-btn:hover {
+            color: red;
+        }
     </style>
 </asp:Content>
 
@@ -99,11 +97,11 @@
         <%-- Selection Container --%>
         <div class="row justify-content-end">
             <div class="col-auto selections">
-                <asp:RadioButton ID="RadioButton6" runat="server" Text="All" GroupName="Options" class="custom-radio me-2" OnCheckedChanged="RadioButton_CheckedChanged" AutoPostBack="True" Checked="true" />
-                <asp:RadioButton ID="RadioButton1" runat="server" Text="Apparel" GroupName="Options" class="custom-radio me-2" OnCheckedChanged="RadioButton_CheckedChanged" AutoPostBack="True" />
-                <asp:RadioButton ID="RadioButton2" runat="server" Text="Bottoms" GroupName="Options" class="custom-radio me-2" OnCheckedChanged="RadioButton_CheckedChanged" AutoPostBack="True" />
-                <asp:RadioButton ID="RadioButton3" runat="server" Text="Footwear" GroupName="Options" class="custom-radio me-2" OnCheckedChanged="RadioButton_CheckedChanged" AutoPostBack="True" />
-                <asp:RadioButton ID="RadioButton4" runat="server" Text="Bags" GroupName="Options" class="custom-radio me-2" OnCheckedChanged="RadioButton_CheckedChanged" AutoPostBack="True" />
+                <asp:RadioButton ID="RadioButton6" runat="server" Text="All" GroupName="Options" class="custom-radio me-2 mb-2" OnCheckedChanged="RadioButton_CheckedChanged" AutoPostBack="True" Checked="true" />
+                <asp:RadioButton ID="RadioButton1" runat="server" Text="Apparel" GroupName="Options" class="custom-radio me-2 mb-2" OnCheckedChanged="RadioButton_CheckedChanged" AutoPostBack="True" />
+                <asp:RadioButton ID="RadioButton2" runat="server" Text="Bottoms" GroupName="Options" class="custom-radio me-2 mb-2" OnCheckedChanged="RadioButton_CheckedChanged" AutoPostBack="True" />
+                <asp:RadioButton ID="RadioButton3" runat="server" Text="Footwear" GroupName="Options" class="custom-radio me-2 mb-2" OnCheckedChanged="RadioButton_CheckedChanged" AutoPostBack="True" />
+                <asp:RadioButton ID="RadioButton4" runat="server" Text="Bags" GroupName="Options" class="custom-radio me-2 mb-2" OnCheckedChanged="RadioButton_CheckedChanged" AutoPostBack="True" />
             </div>
         </div>
 
