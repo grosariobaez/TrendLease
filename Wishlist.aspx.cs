@@ -35,9 +35,13 @@ namespace TrendLease_WebApp
 
         protected void addToCartBtn_Click(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
+            RepeaterItem item = (RepeaterItem)btn.NamingContainer;
 
-            Button button = (Button)sender;
-            string prodID = button.CommandArgument.ToString();
+            // Find the productName label within the current repeater item
+            Label productName = (Label)item.FindControl("productName");
+            string prodName = productName.Text;
+            string prodID = btn.CommandArgument.ToString();
 
             string username = Request.QueryString["username"];
 
@@ -45,17 +49,17 @@ namespace TrendLease_WebApp
 
             bool itemExistsInCart = repository.ItemExistsInCart(username, prodID);
 
-
             if (!itemExistsInCart)
             {
                 repository.InsertItemCart(username, prodID);
-                Response.Write($"<script>alert('Success! Item is added to cart.');</script>");
+                Response.Write($"<script>alert('Item {prodName} added to wishlist.');</script>");
             }
             else
             {
-                Response.Write($"<script>alert('Item is already in the cart.');</script>");
+                Response.Write($"<script>alert('Item {prodName} is already in your wishlist.');</script>");
             }
         }
+
 
         protected void deleteToWishlist_Click(object sender, EventArgs e)
         {

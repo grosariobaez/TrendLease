@@ -18,6 +18,7 @@
         .prod-title {
             font-weight: 500;
             font-size: 20px;
+            color: black;
             margin-top: -0.7rem;
         }
 
@@ -91,7 +92,8 @@
                                                 <asp:Button ID="deleteToWishlist" class="btn-close btn-sm" runat="server" OnClick="deleteToWishlist_Click" CommandArgument='<%# Eval("prodID") %>' />
                                             </div>
                                         </div>
-                                        <p class="card-text prod-title"><%# Eval("prodName") %></p>
+                                            <asp:Label ID="productName" class="card-text prod-title" runat="server" Text='<%# Eval("prodName") %>'></asp:Label>
+                                        
                                         <!-- Details -->
                                     </div>
                                     <!-- Add to Cart Button -->

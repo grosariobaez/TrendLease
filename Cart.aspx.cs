@@ -52,18 +52,25 @@ namespace TrendLease_WebApp
 
         protected void deleteFromCart_Click(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            string prodID = button.CommandArgument.ToString();
+            // Temporarily disable validation
+            Page.Validate("DeleteFromCartValidationGroup"); // Replace "DeleteFromCartValidationGroup" with the ID of your validation group
+            if (Page.IsValid)
+            {
+                Button button = (Button)sender;
+                string prodID = button.CommandArgument.ToString();
 
-            string username = Request.QueryString["username"];
+                string username = Session["Username"] as string;
 
-            CartRepository repository = new CartRepository();
+                CartRepository repository = new CartRepository();
 
-            // delete from wishlist
-            repository.DeleteFromCart(username, prodID);
+                // Delete item from the cart
+                repository.DeleteFromCart(username, prodID);
 
-            Response.Redirect(Request.RawUrl);
+                // Redirect back to the cart page
+                Response.Redirect(Request.RawUrl);
+            }
         }
+
 
         protected void payBtn_Click(object sender, EventArgs e)
         {

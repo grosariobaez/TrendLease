@@ -17,6 +17,8 @@
     <%-- CSS --%>
     <link href="Styles/Elements.css" rel="stylesheet" type="text/css" />
 
+    <link rel="icon" href="Image/Home/web-icon.ico" type="image/x-icon" />
+
     <style>
         #content-container {
             display: flex;

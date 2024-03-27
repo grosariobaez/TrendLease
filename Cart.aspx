@@ -64,7 +64,7 @@
                                                     <p class="card-text">Price: ₱<%# Eval("prodPrice", "{0:F2}") %></p>
                                                 </div>
                                                 <div class="me-4">
-                                                    <asp:Button ID="deleteItem" runat="server" Text="" class="btn btn-close" aria-label="Close" OnClick="deleteFromCart_Click" CommandArgument='<%# Eval("prodID") %>' />
+                                                    <asp:Button ID="deleteItem" runat="server" Text="" class="btn btn-close" aria-label="Close" OnClick="deleteFromCart_Click" CommandArgument='<%# Eval("prodID") %>' ValidationGroup="DeleteCartItem" />
                                                 </div>
                                             </div>
                                         </div>
@@ -156,7 +156,8 @@
                             <asp:ListItem Text="PayPal" Value="paypal"></asp:ListItem>
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator ID="paymentMethodValidator" runat="server"
-                            ControlToValidate="paymentMethod" InitialValue=""
+                            ControlToValidate="paymentMethod"
+                            InitialValue=""
                             ErrorMessage="Please select a payment method"
                             CssClass="text-danger" />
                     </div>
@@ -165,15 +166,27 @@
 
                     <div class="mb-3">
                         <asp:TextBox ID="cardholderName" autocomplete="off" class="form-control" placeholder="Enter Cardholder's Name" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Cardholder's Name is required." ControlToValidate="cardholderName" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                            ControlToValidate="cardholderName"
+                            ErrorMessage="Cardholder's Name is required."
+                            Display="Dynamic"
+                            ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
 
                     <div class="mb-3">
                         <asp:TextBox ID="cardNumber" autocomplete="off" class="form-control" placeholder="Enter Card Number (XXXX - XXXX - XXXX - XXXX)" runat="server" onkeyup="addHyphens(this)"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Card Number is required." ControlToValidate="cardNumber" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                            ControlToValidate="cardNumber"
+                            ErrorMessage="Card Number is required."
+                            Display="Dynamic"
+                            ForeColor="Red"></asp:RequiredFieldValidator>
 
-                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please follow the specified format (XXXX - XXXX - XXXX - XXXX)." ControlToValidate="cardNumber" Display="Dynamic" ForeColor="Red" ValidationExpression="^\d{4}\s*-\s*\d{4}\s*-\s*\d{4}\s*-\s*\d{4}$"></asp:RegularExpressionValidator>
-
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                            ControlToValidate="cardNumber"
+                            ErrorMessage="Please follow the specified format (XXXX - XXXX - XXXX - XXXX)."
+                            Display="Dynamic"
+                            ForeColor="Red"
+                            ValidationExpression="^\d{4}\s*-\s*\d{4}\s*-\s*\d{4}\s*-\s*\d{4}$"></asp:RegularExpressionValidator>
                     </div>
                     <script>
                         function addHyphens(element) {

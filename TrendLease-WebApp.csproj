@@ -102,6 +102,7 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Home.aspx" />
     <Content Include="Image\Home\model.png" />
+    <Content Include="Image\Home\web-icon.ico" />
     <Content Include="Image\Products\00001.png" />
     <Content Include="Image\Products\00002.png" />
     <Content Include="Image\Products\00003.png" />
