@@ -96,11 +96,11 @@ namespace TrendLease_WebApp
             if (!itemExistsInCart)
             {
                 repository.InsertItemCart(username, prodID);
-                Response.Write($"<script>alert('Item {prodName} added to wishlist.');</script>");
+                Response.Write($"<script>alert('Item {prodName} added to cart.');</script>");
             }
             else
             {
-                Response.Write($"<script>alert('Item {prodName} is already in your wishlist.');</script>");
+                Response.Write($"<script>alert('Item {prodName} is already in your cart.');</script>");
             }
         }
     }
