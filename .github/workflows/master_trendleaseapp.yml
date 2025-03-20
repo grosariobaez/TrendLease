@@ -55,4 +55,4 @@ jobs:
           app-name: 'TrendLeaseApp'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2D4FAEE64C6349BA8F237F564F3BBC0B }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2A3469A35D7844898EC4C2A78734300B }}
